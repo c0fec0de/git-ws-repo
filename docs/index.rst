@@ -65,7 +65,7 @@ Remotes
     * - ``alias``
       - Ignored.
     * - ``fetch``
-      - Full. Used as ``url-base``. URL to a group of repositories. Not the repository itself!
+      - Full. Used as ``url-base``. URL to a group of repositories.
     * - ``pushurl``
       - Ignored.
     * - ``review``
@@ -107,6 +107,7 @@ Projects
 .. list-table:: ``project``
     :widths: 25 75
     :header-rows: 1
+    :class: longtable
 
     * - Element
       - Support
@@ -121,7 +122,7 @@ Projects
     * - ``dest-branch``
       - Ignored.
     * - ``groups``
-      - Ignored.
+      - Partly. See :ref:`Groups`.
     * - ``sync-c``
       - Ignored.
     * - ``sync-s``
@@ -142,6 +143,22 @@ Projects
       - Full. See :ref:`Copy and Linkfile`.
     * - ``linkfile``
       - Full. See :ref:`Copy and Linkfile`.
+
+Groups
+------
+
+Groups are partly supported.
+
+The group ``notdefault`` is deselected by default.
+
+The group ``all`` is not needed. The group-filter selection ``+*`` can be used instead.
+
+The group ``default`` is not needed. All projects are selected by default.
+
+The group ``name:NAME`` scheme is not supported.
+
+The group ``path:PATH`` scheme is handled by ``@path``.
+
 
 Copy and Linkfile
 -----------------

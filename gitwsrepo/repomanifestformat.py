@@ -17,6 +17,7 @@
 """
 Google Git Repo Manifest Format.
 """
+import re
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Dict, List
@@ -26,15 +27,18 @@ from defusedxml import ElementTree
 from gitws import (
     Defaults,
     FileRef,
+    Group,
     ManifestError,
     ManifestFormat,
     ManifestNotFoundError,
     ManifestSpec,
     ProjectSpec,
     Remote,
+    ValidationError,
 )
 from gitws._util import LOGGER
-from pydantic import ValidationError
+
+_RE_SPLIT = re.compile(r"[,\s]\s*")
 
 
 class RepoManifestFormat(ManifestFormat):
@@ -84,28 +88,43 @@ class RepoManifestFormat(ManifestFormat):
             with _handle_validation_error(path, element):
                 remotes.append(Remote(**remote))
 
-        def _convert_project(projects: List[ProjectSpec], element):
+        def _convert_project(projects: List[ProjectSpec], element, pname=None, ppath=None):
             copyfiles: List[FileRef] = []
             linkfiles: List[FileRef] = []
+            groups: List[Group] = []
             project = {
-                "copyfiles": copyfiles,
-                "linkfiles": linkfiles,
                 "recursive": False,
             }
+            subprojects: List[ProjectSpec] = []
             for name, value in element.attrib.items():
-                if name in ("name", "path", "remote", "revision"):
+                if name == "name":
+                    project[name] = f"{pname}{value}" if pname else value
+                elif name == "path":
+                    project[name] = f"{ppath}/{value}" if ppath else value
+                elif name in ("remote", "revision"):
                     project[name] = value
+                elif name == "groups":
+                    groups.extend(item.strip() for item in _RE_SPLIT.split(value))
                 else:
                     _ignore(f"default.{name}")
+            # group compatibility
+            pname = project["name"]
+            ppath = project.get("path", pname)
+            # subelements
             for subelement in element:
                 if subelement.tag == "copyfile":
                     _convert_file(copyfiles, "project.copyfile", subelement)
                 elif subelement.tag == "linkfile":
                     _convert_file(linkfiles, "project.linkfile", subelement)
+                elif subelement.tag == "project":
+                    _convert_project(subprojects, subelement, pname=pname, ppath=ppath)
                 else:
                     _ignore(f"project.{subelement.tag}")
             with _handle_validation_error(path, element):
-                projects.append(ProjectSpec(**project))
+                projects.append(
+                    ProjectSpec(copyfiles=tuple(copyfiles), linkfiles=tuple(linkfiles), groups=tuple(groups), **project)
+                )
+            projects.extend(subprojects)
 
         def _convert_file(files: List[FileRef], prefix: str, element):
             file = {}
@@ -144,13 +163,19 @@ class RepoManifestFormat(ManifestFormat):
                 _ignore(tag)
 
         with _handle_validation_error(path, root):
-            return ManifestSpec(defaults=Defaults(**defaults), remotes=tuple(remotes), dependencies=tuple(projects))
+            return ManifestSpec(
+                defaults=Defaults(**defaults),
+                remotes=tuple(remotes),
+                dependencies=tuple(projects),
+                group_filters=["-notdefault"],
+            )
 
 
 @contextmanager
 def _handle_validation_error(path, element):
     try:
         yield
-    except ValidationError:
+    except ValidationError as exc:
+        LOGGER.debug(str(exc))
         expr = tostring(element).decode("utf-8").strip()
         raise ManifestError(path, expr) from None

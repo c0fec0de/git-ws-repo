@@ -77,7 +77,7 @@ def test_default():
     filepath = TESTDATA_PATH / "default.xml"
     manifest_format = RepoManifestFormat()
     assert manifest_format.is_compatible(filepath)
-    assert manifest_format.load(filepath) == ManifestSpec()
+    assert manifest_format.load(filepath) == ManifestSpec(group_filters=("-notdefault",))
 
 
 def test_example(tmp_path, caplog):
@@ -89,7 +89,7 @@ def test_example(tmp_path, caplog):
 
         manifest_spec = manifest_format.load(filepath)
         assert manifest_spec.version == "1.0"
-        assert manifest_spec.group_filters == tuple()
+        assert manifest_spec.group_filters == ("-notdefault",)
         assert manifest_spec.linkfiles == tuple()
         assert manifest_spec.copyfiles == tuple()
         assert manifest_spec.remotes == (
@@ -98,8 +98,10 @@ def test_example(tmp_path, caplog):
         )
         assert manifest_spec.defaults == Defaults(remote="origin", revision="rev")
         assert manifest_spec.dependencies == (
-            ProjectSpec(name="dep1", revision="rev1", recursive=False),
-            ProjectSpec(name="dep2", path="sub/dep2", recursive=False),
+            ProjectSpec(name="dep1", revision="rev1", groups=("cde",), recursive=False),
+            ProjectSpec(name="dep2", path="sub/dep2", groups=("abc", "cde", "fgh"), recursive=False),
+            ProjectSpec(name="dep2dep2_1", recursive=False),
+            ProjectSpec(name="dep2dep2_2", path="sub/dep2/ss22", recursive=False),
             ProjectSpec(
                 name="dep3",
                 remote="otherrepo",

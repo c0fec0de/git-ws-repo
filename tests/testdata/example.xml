@@ -3,8 +3,11 @@
   <remote fetch="mygitrepo" name="origin" review="rew"/>
   <remote fetch="otherrepo" name="faraway" review="rew2"/>
   <default remote="origin" revision="rev" upstream="up"/>
-  <project name="dep1" revision="rev1" sync-c="2"/>
-  <project name="dep2" path="sub/dep2"/>
+  <project name="dep1" revision="rev1" sync-c="2" groups="cde" />
+  <project name="dep2" path="sub/dep2" groups="abc, cde fgh">
+    <project name="dep2_1" />
+    <project name="dep2_2" path="ss22" />
+  </project>
   <project name="dep3" remote="otherrepo" revision="rev3">
     <copyfile src="copy" dest="dep3-copy"/>
     <linkfile src="link" dest="dep3-link" extra='ex2'/>
