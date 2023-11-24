@@ -2,7 +2,7 @@
 *.sublime-workspace
 report.xml
 coverage.xml
-.coverage
+.coverage*
 .tox
 .venv
 .mypy_cache

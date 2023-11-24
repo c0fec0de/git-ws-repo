@@ -50,18 +50,14 @@ class RepoManifestFormat(ManifestFormat):
         """Check If v  File At ``path`` Is Compatible."""
         return path.suffix == ".xml"
 
-    def load(self, path: Path) -> ManifestSpec:
+    def load(self, path: Path) -> ManifestSpec:  # noqa: C901, PLR0915
         """
         Load Manifest From ``path``.
 
         Raises:
             ManifestNotFoundError: if file is not found
-            IncompatibleFormatError: Not Supported File Format.
             ManifestError: On Syntax Or Data Scheme Errors.
         """
-
-        # pylint: disable=too-many-statements
-
         defaults: Dict[str, str] = {}
         remotes: List[Remote] = []
         projects: List[ProjectSpec] = []

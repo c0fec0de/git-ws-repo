@@ -29,17 +29,16 @@ RepoManifestFormat = 'gitwsrepo.repomanifestformat:RepoManifestFormat'
 [tool.poetry.dependencies]
 python = '^3.8.2'
 defusedxml = "^0.7.1"
-git-ws = {git = "https://github.com/c0fec0de/git-ws.git", rev = "82-google-repo-compatibility"}
+git-ws = "^2.0.0"
 
 [tool.poetry.group.test.dependencies]
-black = '^22.3.0'
-coverage = '^6.4.4'
-isort = '^5.9'
+coveralls = "^3.3.1"
 mypy = "~1.0.0"
-pylint = '^2.15'
-pytest = '^6.2'
-tabulate = '>=0.8.10,<1.0.0'
-types-appdirs = "^1.4.3"
+pre-commit = "^3.5.0"
+pytest = '^7.0'
+pytest-cov = "^4.1.0"
+pytest-xdist = "^3.5.0"
+ruff = "^0.1.6"
 
 [tool.poetry.group.doc.dependencies]
 sphinx = '^5.1.1'
@@ -50,28 +49,98 @@ sphinxemoji = ">=0.2.0"
 requires = ["poetry_core>=1.0"]
 build-backend = "poetry.core.masonry.api"
 
-
-[tool.black]
+[tool.ruff]
 line-length = 120
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.eggs
-  | \.git
-  | \.mypy_cache
-  | \.venv
-  | \.tox
-  | build
-  | dist
-  | setup\.py
-)/
-'''
+fix = true
+select = [
+    # isort
+    "I",
+    # pyflakes
+    "F",
+    # pycodestyle
+    "E", "W",
+    # pydocstyle
+    "D",
+    # flake8-2020
+    "YTT",
+    # flake8-bugbear
+    "B",
+    # flake8-quotes
+    "Q",
+    # flake8-debugger
+    "T10",
+    # flake8-gettext
+    "INT",
+    # pylint
+    "PL",
+    # misc lints
+    "PIE",
+    # flake8-pyi
+    "PYI",
+    # tidy imports
+    "TID",
+    # implicit string concatenation
+    "ISC",
+    # type-checking imports
+    "TCH",
+    # comprehensions
+    "C",
+    # pygrep-hooks
+    "PGH",
+    # Ruff-specific rules
+    "RUF",
+    # flake8-bandit: exec-builtin
+    "S102",
+    # numpy-legacy-random
+    "NPY002",
+    # Perflint
+    "PERF",
+    # flynt
+    "FLY",
+    # flake8-logging-format
+    "G",
+    # pyupgrade
+    "UP",
+]
+ignore = [
+    # too-many-arguments
+    'PLR0913',
+    # Ambigious
+    'ISC001',
+    # support type: ignore
+    'PGH003',
+    # poetry deviates
+    'RUF200',
+    # Ambigious doc
+    'D203', 'D212', 'D402', 'D406',
+    # Multiline doc is ok.
+    'D200',
+    # We use the class for constructor doc
+    'D107',
+    # We keep legacy on Optional[] and Union[]
+    'UP007',
+    # Magic method documentation is optional
+    'D105',
+    # Section underline
+    'D407',
+]
 
-[tool.isort]
-profile = "black"
-line_length = 120
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"gitwsrepo/_cli/**.py" = ["PLR0913"]
 
 [tool.pytest.ini_options]
+addopts = """
+    --cov gitwsrepo
+    --cov-report term
+    --cov-report html -n auto
+    --doctest-glob=docs/*.rst
+    --doctest-modules
+    --ignore-glob=tests/testdata*
+    --ignore=docs/conf.py
+    --log-level=DEBUG
+    --junitxml=report.xml
+"""
 filterwarnings = [
     "error",
 ]
@@ -82,12 +151,6 @@ exclude_lines = [
     'raise NotImplementedError()',
     'pragma: no cover',
     'assert False',
-]
-
-
-[tool.pylint.'MESSAGES CONTROL']
-max-line-length = 120
-disable = [
 ]
 
 [tool.mypy]
@@ -109,13 +172,8 @@ setenv =
 
 commands =
     poetry install --with=test --with=doc
-    poetry run black .
-    poetry run isort .
-    poetry run coverage run --source=gitwsrepo --branch -m pytest --doctest-glob=docs/*.rst --doctest-modules --ignore-glob=tests/testdata* --ignore=docs/conf.py --log-level=DEBUG -vv --junitxml=report.xml
-    poetry run coverage report
-    poetry run coverage html
-    poetry run coverage xml
-    poetry run pylint gitwsrepo tests
+    poetry run pre-commit run --all-files
+    poetry run pytest -vv
     poetry run mypy gitwsrepo
     poetry run make html -C docs
 

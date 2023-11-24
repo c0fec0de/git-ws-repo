@@ -21,5 +21,5 @@ TESTDATA_PATH = Path(__file__).parent / "testdata"
 
 
 def get_refdata_path(filepath: str):
-    """Reference Data Path."""
-    return Path(__file__).parent / "refdata" / Path(filepath).name
+    """Return Reference Data Path."""
+    return Path(__file__).parent / "refdata" / Path(filepath).stem

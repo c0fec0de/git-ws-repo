@@ -15,8 +15,7 @@
 # with Git Workspace. If not, see <https://www.gnu.org/licenses/>.
 
 """
-
-TODO
+Google's git-repo replacement powered by git-ws.
 """
 
 from .repomanifestformat import RepoManifestFormat

@@ -1,0 +1,7922 @@
+version = "1.0"
+##
+## Git Workspace's Manifest. Please see the documentation at:
+##
+## https://git-ws.readthedocs.io/en/stable/manual/manifest.html
+##
+
+
+# group-filters = ["-doc", "-feature@path"]
+group-filters = ["-notdefault"]
+
+
+# [[remotes]]
+# name = "myremote"
+# url-base = "https://github.com/myuser"
+[[remotes]]
+name = "aosp"
+url-base = ".."
+
+
+[defaults]
+remote = "aosp"
+revision = "main"
+
+# remote = "myserver"
+# revision = "main"
+# groups = ["test"]
+# with-groups = ["doc"]
+
+
+## A minimal dependency:
+# [[dependencies]]
+# name = "my"
+
+## A full flavored dependency using a 'remote':
+# [[dependencies]]
+# name = "myname"
+# remote = "remote"
+# sub-url = "my.git"
+# revision = "main"
+# path = "mydir"
+# groups = ["group"]
+#
+# [[dependencies.linkfiles]]
+# src = "file0-in-mydir.txt"
+# dest = "link0-in-workspace.txt"
+#
+# [[dependencies.linkfiles]]
+# src = "file1-in-mydir.txt"
+# dest = "link1-in-workspace.txt"
+#
+# [[dependencies.copyfiles]]
+# src = "file0-in-mydir.txt"
+# dest = "file0-in-workspace.txt"
+#
+# [[dependencies.copyfiles]]
+# src = "file1-in-mydir.txt"
+# dest = "file1-in-workspace.txt"
+
+## A full flavored dependency using a 'url':
+# [[dependencies]]
+# name = "myname"
+# url = "https://github.com/myuser/my.git"
+# revision = "main"
+# path = "mydir"
+# groups = ["group"]
+#
+# [[dependencies.linkfiles]]
+# src = "file0-in-mydir.txt"
+# dest = "link0-in-workspace.txt"
+#
+# [[dependencies.linkfiles]]
+# src = "file1-in-mydir.txt"
+# dest = "link1-in-workspace.txt"
+#
+# [[dependencies.copyfiles]]
+# src = "file0-in-mydir.txt"
+# dest = "file0-in-workspace.txt"
+#
+# [[dependencies.copyfiles]]
+# src = "file1-in-mydir.txt"
+# dest = "file1-in-workspace.txt"
+
+[[dependencies]]
+name = "platform/build"
+path = "build/make"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies.linkfiles]]
+src = "CleanSpec.mk"
+dest = "build/CleanSpec.mk"
+
+[[dependencies.linkfiles]]
+src = "buildspec.mk.default"
+dest = "build/buildspec.mk.default"
+
+[[dependencies.linkfiles]]
+src = "core"
+dest = "build/core"
+
+[[dependencies.linkfiles]]
+src = "envsetup.sh"
+dest = "build/envsetup.sh"
+
+[[dependencies.linkfiles]]
+src = "target"
+dest = "build/target"
+
+[[dependencies.linkfiles]]
+src = "tools"
+dest = "build/tools"
+
+[[dependencies]]
+name = "platform/build/orchestrator"
+path = "build/orchestrator"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/build/bazel"
+path = "build/bazel"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies.linkfiles]]
+src = "bazel.WORKSPACE"
+dest = "WORKSPACE"
+
+[[dependencies.linkfiles]]
+src = "bazel.BUILD"
+dest = "BUILD"
+
+[[dependencies]]
+name = "platform/build/bazel_common_rules"
+path = "build/bazel_common_rules"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/build/blueprint"
+path = "build/blueprint"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/build/pesto"
+path = "build/pesto"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/build/release"
+path = "build/release"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/build/soong"
+path = "build/soong"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies.linkfiles]]
+src = "root.bp"
+dest = "Android.bp"
+
+[[dependencies.linkfiles]]
+src = "bootstrap.bash"
+dest = "bootstrap.bash"
+
+[[dependencies]]
+name = "platform/art"
+path = "art"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/bionic"
+path = "bionic"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/bootable/recovery"
+path = "bootable/recovery"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/bootable/libbootloader"
+path = "bootable/libbootloader"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/cts"
+path = "cts"
+groups = ["cts", "pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/dalvik"
+path = "dalvik"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/developers/build"
+path = "developers/build"
+groups = ["developers", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/developers/demos"
+path = "developers/demos"
+groups = ["developers"]
+recursive = false
+
+[[dependencies]]
+name = "platform/developers/samples/android"
+path = "developers/samples/android"
+groups = ["developers"]
+recursive = false
+
+[[dependencies]]
+name = "platform/development"
+path = "development"
+groups = ["developers", "pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "device/amlogic/yukawa"
+path = "device/amlogic/yukawa"
+groups = ["device", "yukawa", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/amlogic/yukawa-kernel"
+path = "device/amlogic/yukawa-kernel"
+groups = ["device", "yukawa", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/common"
+path = "device/common"
+groups = ["pdk-cw-fs", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/arm64"
+path = "device/generic/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/armv7-a-neon"
+path = "device/generic/armv7-a-neon"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/art"
+path = "device/generic/art"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/car"
+path = "device/generic/car"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/common"
+path = "device/generic/common"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/goldfish"
+path = "device/generic/goldfish"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/goldfish-opengl"
+path = "device/generic/goldfish-opengl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/mini-emulator-arm64"
+path = "device/generic/mini-emulator-arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/mini-emulator-armv7-a-neon"
+path = "device/generic/mini-emulator-armv7-a-neon"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/mini-emulator-x86"
+path = "device/generic/mini-emulator-x86"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/mini-emulator-x86_64"
+path = "device/generic/mini-emulator-x86_64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/opengl-transport"
+path = "device/generic/opengl-transport"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/qemu"
+path = "device/generic/qemu"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/trusty"
+path = "device/generic/trusty"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/uml"
+path = "device/generic/uml"
+groups = ["device", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/x86"
+path = "device/generic/x86"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/x86_64"
+path = "device/generic/x86_64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/generic/vulkan-cereal"
+path = "device/generic/vulkan-cereal"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/atv"
+path = "device/google/atv"
+groups = ["device", "broadcom_pdk", "generic_fs", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/barbet"
+path = "device/google/barbet"
+groups = ["device", "barbet"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/barbet-sepolicy"
+path = "device/google/barbet-sepolicy"
+groups = ["device", "barbet"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/bluejay"
+path = "device/google/bluejay"
+groups = ["device", "bluejay"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/bluejay-sepolicy"
+path = "device/google/bluejay-sepolicy"
+groups = ["device", "bluejay"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/bluejay-kernel"
+path = "device/google/bluejay-kernel"
+groups = ["device", "bluejay"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/bramble"
+path = "device/google/bramble"
+groups = ["device", "bramble"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/bramble-sepolicy"
+path = "device/google/bramble-sepolicy"
+groups = ["device", "bramble"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/contexthub"
+path = "device/google/contexthub"
+groups = ["device", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/coral"
+path = "device/google/coral"
+groups = ["device", "coral", "generic_fs"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/coral-kernel"
+path = "device/google/coral-kernel"
+groups = ["device", "coral", "generic_fs"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/coral-sepolicy"
+path = "device/google/coral-sepolicy"
+groups = ["device", "coral", "generic_fs"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/felix"
+path = "device/google/felix"
+groups = ["device", "felix"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/felix-sepolicy"
+path = "device/google/felix-sepolicy"
+groups = ["device", "felix"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/felix-kernel"
+path = "device/google/felix-kernel"
+groups = ["device", "felix"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/gs101"
+path = "device/google/gs101"
+groups = ["device", "slider", "bluejay", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/gs101-sepolicy"
+path = "device/google/gs101-sepolicy"
+groups = ["device", "slider", "bluejay", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/gs201"
+path = "device/google/gs201"
+groups = ["device", "cloudripper"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/gs201-sepolicy"
+path = "device/google/gs201-sepolicy"
+groups = ["device", "cloudripper"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/gs-common"
+path = "device/google/gs-common"
+groups = ["device", "slider", "bluejay", "cloudripper", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/lynx"
+path = "device/google/lynx"
+groups = ["device", "lynx"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/lynx-sepolicy"
+path = "device/google/lynx-sepolicy"
+groups = ["device", "lynx"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/lynx-kernel"
+path = "device/google/lynx-kernel"
+groups = ["device", "lynx"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/pantah"
+path = "device/google/pantah"
+groups = ["device", "cloudripper"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/pantah-sepolicy"
+path = "device/google/pantah-sepolicy"
+groups = ["device", "cloudripper"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/pantah-kernel"
+path = "device/google/pantah-kernel"
+groups = ["device", "cloudripper"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/raviole"
+path = "device/google/raviole"
+groups = ["device", "slider", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/raviole-kernel"
+path = "device/google/raviole-kernel"
+groups = ["device", "slider", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/redbull"
+path = "device/google/redbull"
+groups = ["device", "redbull"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/redbull-kernel"
+path = "device/google/redbull-kernel"
+groups = ["device", "bramble", "redfin"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/redbull-sepolicy"
+path = "device/google/redbull-sepolicy"
+groups = ["device", "redbull"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/redfin"
+path = "device/google/redfin"
+groups = ["device", "redfin"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/redfin-sepolicy"
+path = "device/google/redfin-sepolicy"
+groups = ["device", "redfin"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/sunfish"
+path = "device/google/sunfish"
+groups = ["device", "sunfish"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/sunfish-kernel"
+path = "device/google/sunfish-kernel"
+groups = ["device", "sunfish"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/sunfish-sepolicy"
+path = "device/google/sunfish-sepolicy"
+groups = ["device", "sunfish"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/tangorpro"
+path = "device/google/tangorpro"
+groups = ["device", "tangorpro"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/tangorpro-sepolicy"
+path = "device/google/tangorpro-sepolicy"
+groups = ["device", "tangorpro"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/tangorpro-kernel"
+path = "device/google/tangorpro-kernel"
+groups = ["device", "tangorpro"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/cuttlefish"
+path = "device/google/cuttlefish"
+groups = ["device", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/cuttlefish_prebuilts"
+path = "device/google/cuttlefish_prebuilts"
+groups = ["device", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/cuttlefish_vmm"
+path = "device/google/cuttlefish_vmm"
+groups = ["device", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/trout"
+path = "device/google/trout"
+groups = ["device", "trout", "gull", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/google/vrservices"
+path = "device/google/vrservices"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/google_car"
+path = "device/google_car"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/linaro/dragonboard"
+path = "device/linaro/dragonboard"
+groups = ["device", "dragonboard", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/linaro/dragonboard-kernel"
+path = "device/linaro/dragonboard-kernel"
+groups = ["device", "dragonboard", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/linaro/hikey"
+path = "device/linaro/hikey"
+groups = ["device", "hikey", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/linaro/hikey-kernel"
+path = "device/linaro/hikey-kernel"
+groups = ["device", "hikey", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/linaro/poplar"
+path = "device/linaro/poplar"
+groups = ["device", "poplar", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/linaro/poplar-kernel"
+path = "device/linaro/poplar-kernel"
+groups = ["device", "poplar", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "device/sample"
+path = "device/sample"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/aac"
+path = "external/aac"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/abseil-cpp"
+path = "external/abseil-cpp"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/AFLplusplus"
+path = "external/AFLplusplus"
+recursive = false
+
+[[dependencies]]
+name = "platform/external/android-key-attestation"
+path = "external/android-key-attestation"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/androidplot"
+path = "external/androidplot"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/angle"
+path = "external/angle"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ant-glob"
+path = "external/ant-glob"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/antlr"
+path = "external/antlr"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-commons-bcel"
+path = "external/apache-commons-bcel"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-commons-compress"
+path = "external/apache-commons-compress"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-commons-io"
+path = "external/apache-commons-io"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-commons-lang"
+path = "external/apache-commons-lang"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-commons-math"
+path = "external/apache-commons-math"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-harmony"
+path = "external/apache-harmony"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-http"
+path = "external/apache-http"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-velocity-engine"
+path = "external/apache-velocity-engine"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/apache-xml"
+path = "external/apache-xml"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/arm-neon-tests"
+path = "external/arm-neon-tests"
+groups = ["vendor"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/arm-optimized-routines"
+path = "external/arm-optimized-routines"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/arm-trusted-firmware"
+path = "external/arm-trusted-firmware"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/auto"
+path = "external/auto"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/autotest"
+path = "external/autotest"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/android-nn-driver"
+path = "external/android-nn-driver"
+groups = ["pdk-lassen", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/armnn"
+path = "external/armnn"
+groups = ["pdk-lassen", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/avb"
+path = "external/avb"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-rules_android"
+path = "external/bazelbuild-rules_android"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-rules_cc"
+path = "external/bazelbuild-rules_cc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-rules_java"
+path = "external/bazelbuild-rules_java"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-rules_go"
+path = "external/bazelbuild-rules_go"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-kotlin-rules"
+path = "external/bazelbuild-kotlin-rules"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-platforms"
+path = "external/bazelbuild-platforms"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-rules_license"
+path = "external/bazelbuild-rules_license"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-rules_python"
+path = "external/bazelbuild-rules_python"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-rules_rust"
+path = "external/bazelbuild-rules_rust"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazelbuild-rules_testing"
+path = "external/bazelbuild-rules_testing"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bazel-skylib"
+path = "external/bazel-skylib"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bc"
+path = "external/bc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bcc"
+path = "external/bcc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/blktrace"
+path = "external/blktrace"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/boringssl"
+path = "external/boringssl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bouncycastle"
+path = "external/bouncycastle"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bpftool"
+path = "external/bpftool"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/brotli"
+path = "external/brotli"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bsdiff"
+path = "external/bsdiff"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/bzip2"
+path = "external/bzip2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/caliper"
+path = "external/caliper"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/capstone"
+path = "external/capstone"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/catch2"
+path = "external/catch2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/cblas"
+path = "external/cblas"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/cbor-java"
+path = "external/cbor-java"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/chromium-trace"
+path = "external/chromium-trace"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/chromium-webview"
+path = "external/chromium-webview"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/clang"
+path = "external/clang"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/cldr"
+path = "external/cldr"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/cn-cbor"
+path = "external/cn-cbor"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/compiler-rt"
+path = "external/compiler-rt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ComputeLibrary"
+path = "external/ComputeLibrary"
+groups = ["pdk-lassen", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/connectedappssdk"
+path = "external/connectedappssdk"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/conscrypt"
+path = "external/conscrypt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/cpu_features"
+path = "external/cpu_features"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/cpuinfo"
+path = "external/cpuinfo"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/crcalc"
+path = "external/crcalc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/cronet"
+path = "external/cronet"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/crosvm"
+path = "external/crosvm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/curl"
+path = "external/curl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/dagger2"
+path = "external/dagger2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/deqp"
+path = "external/deqp"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/deqp-deps/SPIRV-Headers"
+path = "external/deqp-deps/SPIRV-Headers"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/deqp-deps/SPIRV-Tools"
+path = "external/deqp-deps/SPIRV-Tools"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/deqp-deps/glslang"
+path = "external/deqp-deps/glslang"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/deqp-deps/amber"
+path = "external/deqp-deps/amber"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/desugar"
+path = "external/desugar"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/dexmaker"
+path = "external/dexmaker"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/dlmalloc"
+path = "external/dlmalloc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/dng_sdk"
+path = "external/dng_sdk"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/dnsmasq"
+path = "external/dnsmasq"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/doclava"
+path = "external/doclava"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/dokka"
+path = "external/dokka"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/double-conversion"
+path = "external/double-conversion"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/downloader"
+path = "external/downloader"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/drm_hwcomposer"
+path = "external/drm_hwcomposer"
+groups = ["drm_hwcomposer", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/dtc"
+path = "external/dtc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/dynamic_depth"
+path = "external/dynamic_depth"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/e2fsprogs"
+path = "external/e2fsprogs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/easymock"
+path = "external/easymock"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/eigen"
+path = "external/eigen"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/elfutils"
+path = "external/elfutils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/emma"
+path = "external/emma"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/erofs-utils"
+path = "external/erofs-utils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/error_prone"
+path = "external/error_prone"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/escapevelocity"
+path = "external/escapevelocity"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ethtool"
+path = "external/ethtool"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/exfatprogs"
+path = "external/exfatprogs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/exoplayer"
+path = "external/exoplayer"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/expat"
+path = "external/expat"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/f2fs-tools"
+path = "external/f2fs-tools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/fastrpc"
+path = "external/fastrpc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/fdlibm"
+path = "external/fdlibm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/fec"
+path = "external/fec"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/fft2d"
+path = "external/fft2d"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/firebase-messaging"
+path = "external/firebase-messaging"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/flac"
+path = "external/flac"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/flatbuffers"
+path = "external/flatbuffers"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/fonttools"
+path = "external/fonttools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/fmtlib"
+path = "external/fmtlib"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/freetype"
+path = "external/freetype"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/fsck_msdos"
+path = "external/fsck_msdos"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/fsverity-utils"
+path = "external/fsverity-utils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/FP16"
+path = "external/FP16"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/FXdiv"
+path = "external/FXdiv"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/gemmlowp"
+path = "external/gemmlowp"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/geojson-jackson"
+path = "external/geojson-jackson"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/geonames"
+path = "external/geonames"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/gflags"
+path = "external/gflags"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/giflib"
+path = "external/giflib"
+groups = ["pdk", "qcom_msm8x26"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/glide"
+path = "external/glide"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/go-cmp"
+path = "external/go-cmp"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/golang-protobuf"
+path = "external/golang-protobuf"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-benchmark"
+path = "external/google-benchmark"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-breakpad"
+path = "external/google-breakpad"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/arbutus-slab"
+path = "external/google-fonts/arbutus-slab"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/barlow"
+path = "external/google-fonts/barlow"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/karla"
+path = "external/google-fonts/karla"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/lustria"
+path = "external/google-fonts/lustria"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/fraunces"
+path = "external/google-fonts/fraunces"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/big-shoulders-text"
+path = "external/google-fonts/big-shoulders-text"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/arvo"
+path = "external/google-fonts/arvo"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/carrois-gothic-sc"
+path = "external/google-fonts/carrois-gothic-sc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/coming-soon"
+path = "external/google-fonts/coming-soon"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/cutive-mono"
+path = "external/google-fonts/cutive-mono"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/dancing-script"
+path = "external/google-fonts/dancing-script"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/lato"
+path = "external/google-fonts/lato"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/source-sans-pro"
+path = "external/google-fonts/source-sans-pro"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/rubik"
+path = "external/google-fonts/rubik"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fonts/zilla-slab"
+path = "external/google-fonts/zilla-slab"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-fruit"
+path = "external/google-fruit"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-java-format"
+path = "external/google-java-format"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-smali"
+path = "external/google-smali"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/google-styleguide"
+path = "external/google-styleguide"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/googletest"
+path = "external/googletest"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/gptfdisk"
+path = "external/gptfdisk"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/grpc-grpc"
+path = "external/grpc-grpc"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/grpc-grpc-java"
+path = "external/grpc-grpc-java"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/gson"
+path = "external/gson"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/guava"
+path = "external/guava"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/guice"
+path = "external/guice"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/gwp_asan"
+path = "external/gwp_asan"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/hamcrest"
+path = "external/hamcrest"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/harfbuzz_ng"
+path = "external/harfbuzz_ng"
+groups = ["pdk", "qcom_msm8x26"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/hyphenation-patterns"
+path = "external/hyphenation-patterns"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/icing"
+path = "external/icing"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/icu"
+path = "external/icu"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/igt-gpu-tools"
+path = "external/igt-gpu-tools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ImageMagick"
+path = "external/ImageMagick"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/image_io"
+path = "external/image_io"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ims"
+path = "external/ims"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/iperf3"
+path = "external/iperf3"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/iproute2"
+path = "external/iproute2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ipsec-tools"
+path = "external/ipsec-tools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/iptables"
+path = "external/iptables"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/iputils"
+path = "external/iputils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/iw"
+path = "external/iw"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jacoco"
+path = "external/jacoco"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jackson-annotations"
+path = "external/jackson-annotations"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jackson-core"
+path = "external/jackson-core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jackson-databind"
+path = "external/jackson-databind"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jarjar"
+path = "external/jarjar"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/javaparser"
+path = "external/javaparser"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/javapoet"
+path = "external/javapoet"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/javasqlite"
+path = "external/javasqlite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/javassist"
+path = "external/javassist"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jazzer-api"
+path = "external/jazzer-api"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jcommander"
+path = "external/jcommander"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jemalloc_new"
+path = "external/jemalloc_new"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jimfs"
+path = "external/jimfs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jline"
+path = "external/jline"
+groups = ["pdk", "tradefed", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jsilver"
+path = "external/jsilver"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jsmn"
+path = "external/jsmn"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jsoncpp"
+path = "external/jsoncpp"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jsr305"
+path = "external/jsr305"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/jsr330"
+path = "external/jsr330"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/junit"
+path = "external/junit"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/junit-params"
+path = "external/junit-params"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/kernel-headers"
+path = "external/kernel-headers"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/kmod"
+path = "external/kmod"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/kotlinc"
+path = "external/kotlinc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/kotlinpoet"
+path = "external/kotlinpoet"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/kotlinx.atomicfu"
+path = "external/kotlinx.atomicfu"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/kotlinx.coroutines"
+path = "external/kotlinx.coroutines"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/kotlinx.metadata"
+path = "external/kotlinx.metadata"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ktfmt"
+path = "external/ktfmt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ksoap2"
+path = "external/ksoap2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ksp"
+path = "external/ksp"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/leveldb"
+path = "external/leveldb"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libaom"
+path = "external/libaom"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libavc"
+path = "external/libavc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libbackup"
+path = "external/libbackup"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libbrillo"
+path = "external/libbrillo"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libbpf"
+path = "external/libbpf"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libcap"
+path = "external/libcap"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libcap-ng"
+path = "external/libcap-ng"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libchrome"
+path = "external/libchrome"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libchrome-gestures"
+path = "external/libchrome-gestures"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libconfig"
+path = "external/libconfig"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libcups"
+path = "external/libcups"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libcxx"
+path = "external/libcxx"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libcxxabi"
+path = "external/libcxxabi"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libdivsufsort"
+path = "external/libdivsufsort"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libdrm"
+path = "external/libdrm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libepoxy"
+path = "external/libepoxy"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libese"
+path = "external/libese"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libevent"
+path = "external/libevent"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libexif"
+path = "external/libexif"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libffi"
+path = "external/libffi"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libgav1"
+path = "external/libgav1"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libdav1d"
+path = "external/libdav1d"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libfuse"
+path = "external/libfuse"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libgsm"
+path = "external/libgsm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libhevc"
+path = "external/libhevc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libiio"
+path = "external/libiio"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libjpeg-turbo"
+path = "external/libjpeg-turbo"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libkmsxx"
+path = "external/libkmsxx"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/liblc3"
+path = "external/liblc3"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libldac"
+path = "external/libldac"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libmpeg2"
+path = "external/libmpeg2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libnetfilter_conntrack"
+path = "external/libnetfilter_conntrack"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libnfnetlink"
+path = "external/libnfnetlink"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libnl"
+path = "external/libnl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libogg"
+path = "external/libogg"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libopus"
+path = "external/libopus"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libpalmrejection"
+path = "external/libpalmrejection"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libpcap"
+path = "external/libpcap"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libphonenumber"
+path = "external/libphonenumber"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libpng"
+path = "external/libpng"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libprotobuf-mutator"
+path = "external/libprotobuf-mutator"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libsrtp2"
+path = "external/libsrtp2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libtextclassifier"
+path = "external/libtextclassifier"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libtraceevent"
+path = "external/libtraceevent"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libtracefs"
+path = "external/libtracefs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/liburing"
+path = "external/liburing"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libusb"
+path = "external/libusb"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libutf"
+path = "external/libutf"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libvpx"
+path = "external/libvpx"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libwebm"
+path = "external/libwebm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libwebsockets"
+path = "external/libwebsockets"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libxaac"
+path = "external/libxaac"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libxkbcommon"
+path = "external/libxkbcommon"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libxml2"
+path = "external/libxml2"
+groups = ["pdk", "libxml2"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/libyuv"
+path = "external/libyuv"
+groups = ["pdk", "libyuv"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/licenseclassifier"
+path = "external/licenseclassifier"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/linux-kselftest"
+path = "external/linux-kselftest"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/llvm"
+path = "external/llvm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/lmfit"
+path = "external/lmfit"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/lottie"
+path = "external/lottie"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/lua"
+path = "external/lua"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ltp"
+path = "external/ltp"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/lz4"
+path = "external/lz4"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/lzma"
+path = "external/lzma"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/marisa-trie"
+path = "external/marisa-trie"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mbedtls"
+path = "external/mbedtls"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mdnsresponder"
+path = "external/mdnsresponder"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mesa3d"
+path = "external/mesa3d"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mime-support"
+path = "external/mime-support"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/minigbm"
+path = "external/minigbm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/minijail"
+path = "external/minijail"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mksh"
+path = "external/mksh"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/mobly"
+path = "external/python/mobly"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mobile-data-download"
+path = "external/mobile-data-download"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mobly-bundled-snippets"
+path = "external/mobly-bundled-snippets"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mobly-snippet-lib"
+path = "external/mobly-snippet-lib"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mockftpserver"
+path = "external/mockftpserver"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mockito"
+path = "external/mockito"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mockito-kotlin"
+path = "external/mockito-kotlin"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mockwebserver"
+path = "external/mockwebserver"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/modp_b64"
+path = "external/modp_b64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mp4parser"
+path = "external/mp4parser"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/MPAndroidChart"
+path = "external/MPAndroidChart"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ms-tpm-20-ref"
+path = "external/ms-tpm-20-ref"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mtools"
+path = "external/mtools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/mtpd"
+path = "external/mtpd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/musl"
+path = "external/musl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/nanohttpd"
+path = "external/nanohttpd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/nanopb-c"
+path = "external/nanopb-c"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/naver-fonts"
+path = "external/naver-fonts"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/neon_2_sse"
+path = "external/neon_2_sse"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/neven"
+path = "external/neven"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/newfs_msdos"
+path = "external/newfs_msdos"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/nist-pkits"
+path = "external/nist-pkits"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/nist-sip"
+path = "external/nist-sip"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/nos/host/generic"
+path = "external/nos/host/generic"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/noto-fonts"
+path = "external/noto-fonts"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/nullaway"
+path = "external/nullaway"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/oauth"
+path = "external/oauth"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/obex"
+path = "external/obex"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/objenesis"
+path = "external/objenesis"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/oboe"
+path = "external/oboe"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/obstack"
+path = "external/obstack"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/oj-libjdwp"
+path = "external/oj-libjdwp"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/okhttp"
+path = "external/okhttp"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/okio"
+path = "external/okio"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/one-true-awk"
+path = "external/one-true-awk"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/opencensus-java"
+path = "external/opencensus-java"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/OpenCL-CTS"
+path = "external/OpenCL-CTS"
+recursive = false
+
+[[dependencies]]
+name = "platform/external/OpenCSD"
+path = "external/OpenCSD"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/open-dice"
+path = "external/open-dice"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/openscreen"
+path = "external/openscreen"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/openthread"
+path = "external/openthread"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/openwrt-prebuilts"
+path = "external/openwrt-prebuilts"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/oss-fuzz"
+path = "external/oss-fuzz"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ot-br-posix"
+path = "external/ot-br-posix"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ow2-asm"
+path = "external/ow2-asm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/owasp/java-encoder"
+path = "external/owasp/java-encoder"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/owasp/sanitizer"
+path = "external/owasp/sanitizer"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/pffft"
+path = "external/pffft"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/pandora/avatar"
+path = "external/pandora/avatar"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/pandora/bt-test-interfaces"
+path = "external/pandora/bt-test-interfaces"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/pandora/mmi2grpc"
+path = "external/pandora/mmi2grpc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/parameter-framework"
+path = "external/parameter-framework"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/pcre"
+path = "external/pcre"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/pdfium"
+path = "external/pdfium"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/perfetto"
+path = "external/perfetto"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/perfmark"
+path = "external/perfmark"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/piex"
+path = "external/piex"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/pigweed"
+path = "external/pigweed"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ply"
+path = "external/ply"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ppp"
+path = "external/ppp"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/proguard"
+path = "external/proguard"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/protobuf"
+path = "external/protobuf"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/psimd"
+path = "external/psimd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/pthreadpool"
+path = "external/pthreadpool"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/puffin"
+path = "external/puffin"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/absl-py"
+path = "external/python/absl-py"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/apitools"
+path = "external/python/apitools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/asn1crypto"
+path = "external/python/asn1crypto"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/bumble"
+path = "external/python/bumble"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/cachetools"
+path = "external/python/cachetools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/cffi"
+path = "external/python/cffi"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/cpython2"
+path = "external/python/cpython2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/cpython3"
+path = "external/python/cpython3"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/cryptography"
+path = "external/python/cryptography"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/dateutil"
+path = "external/python/dateutil"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/enum34"
+path = "external/python/enum34"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/google-auth-library-python"
+path = "external/python/google-auth-library-python"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/google-api-python-client"
+path = "external/python/google-api-python-client"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/httplib2"
+path = "external/python/httplib2"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/ipaddress"
+path = "external/python/ipaddress"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/jinja"
+path = "external/python/jinja"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/markupsafe"
+path = "external/python/markupsafe"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/oauth2client"
+path = "external/python/oauth2client"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/parse_type"
+path = "external/python/parse_type"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/portpicker"
+path = "external/python/portpicker"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/pyasn1"
+path = "external/python/pyasn1"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/pyasn1-modules"
+path = "external/python/pyasn1-modules"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/pybind11"
+path = "external/python/pybind11"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/pycparser"
+path = "external/python/pycparser"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/pyee"
+path = "external/python/pyee"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/pyfakefs"
+path = "external/python/pyfakefs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/pyserial"
+path = "external/python/pyserial"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/python-api-core"
+path = "external/python/python-api-core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/pyyaml"
+path = "external/python/pyyaml"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/rsa"
+path = "external/python/rsa"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/setuptools"
+path = "external/python/setuptools"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/six"
+path = "external/python/six"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/timeout-decorator"
+path = "external/python/timeout-decorator"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/typing"
+path = "external/python/typing"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/python/uritemplates"
+path = "external/python/uritemplates"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rappor"
+path = "external/rappor"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/regex-re2"
+path = "external/regex-re2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/renderscript-intrinsics-replacement-toolkit"
+path = "external/renderscript-intrinsics-replacement-toolkit"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/replicaisland"
+path = "external/replicaisland"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rmi4utils"
+path = "external/rmi4utils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/robolectric"
+path = "external/robolectric"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/robolectric-shadows"
+path = "external/robolectric-shadows"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/roboto-flex-fonts"
+path = "external/roboto-flex-fonts"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/roboto-fonts"
+path = "external/roboto-fonts"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rootdev"
+path = "external/rootdev"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rnnoise"
+path = "external/rnnoise"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/aarch64-paging"
+path = "external/rust/crates/aarch64-paging"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ahash"
+path = "external/rust/crates/ahash"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/aho-corasick"
+path = "external/rust/crates/aho-corasick"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/android_logger"
+path = "external/rust/crates/android_logger"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/android_log-sys"
+path = "external/rust/crates/android_log-sys"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/anes"
+path = "external/rust/crates/anes"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/annotate-snippets"
+path = "external/rust/crates/annotate-snippets"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/anyhow"
+path = "external/rust/crates/anyhow"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/arbitrary"
+path = "external/rust/crates/arbitrary"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/argh"
+path = "external/rust/crates/argh"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/arc-swap"
+path = "external/rust/crates/arc-swap"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/argh_derive"
+path = "external/rust/crates/argh_derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/argh_shared"
+path = "external/rust/crates/argh_shared"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ash"
+path = "external/rust/crates/ash"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/async-stream"
+path = "external/rust/crates/async-stream"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/async-stream-impl"
+path = "external/rust/crates/async-stream-impl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/async-task"
+path = "external/rust/crates/async-task"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/async-trait"
+path = "external/rust/crates/async-trait"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/atomic"
+path = "external/rust/crates/atomic"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/atty"
+path = "external/rust/crates/atty"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/base64"
+path = "external/rust/crates/base64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bencher"
+path = "external/rust/crates/bencher"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bindgen"
+path = "external/rust/crates/bindgen"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bindgen-cli"
+path = "external/rust/crates/bindgen-cli"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bitflags"
+path = "external/rust/crates/bitflags"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bitreader"
+path = "external/rust/crates/bitreader"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bstr"
+path = "external/rust/crates/bstr"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/buddy_system_allocator"
+path = "external/rust/crates/buddy_system_allocator"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bytemuck"
+path = "external/rust/crates/bytemuck"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bytemuck_derive"
+path = "external/rust/crates/bytemuck_derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/byteorder"
+path = "external/rust/crates/byteorder"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/bytes"
+path = "external/rust/crates/bytes"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/cast"
+path = "external/rust/crates/cast"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/cesu8"
+path = "external/rust/crates/cesu8"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/cexpr"
+path = "external/rust/crates/cexpr"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/cfg-if"
+path = "external/rust/crates/cfg-if"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/chrono"
+path = "external/rust/crates/chrono"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ciborium"
+path = "external/rust/crates/ciborium"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ciborium-io"
+path = "external/rust/crates/ciborium-io"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ciborium-ll"
+path = "external/rust/crates/ciborium-ll"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/clang-sys"
+path = "external/rust/crates/clang-sys"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/clap"
+path = "external/rust/crates/clap"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/clap_derive"
+path = "external/rust/crates/clap_derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/clap_lex"
+path = "external/rust/crates/clap_lex"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/codespan-reporting"
+path = "external/rust/crates/codespan-reporting"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/combine"
+path = "external/rust/crates/combine"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/command-fds"
+path = "external/rust/crates/command-fds"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/config"
+path = "external/rust/crates/config"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/configparser"
+path = "external/rust/crates/configparser"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/const-oid"
+path = "external/rust/crates/const-oid"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/coset"
+path = "external/rust/crates/coset"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/crc32fast"
+path = "external/rust/crates/crc32fast"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/criterion"
+path = "external/rust/crates/criterion"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/criterion-plot"
+path = "external/rust/crates/criterion-plot"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/crossbeam-channel"
+path = "external/rust/crates/crossbeam-channel"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/crossbeam-deque"
+path = "external/rust/crates/crossbeam-deque"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/crossbeam-epoch"
+path = "external/rust/crates/crossbeam-epoch"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/crossbeam-queue"
+path = "external/rust/crates/crossbeam-queue"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/crossbeam-utils"
+path = "external/rust/crates/crossbeam-utils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/csv"
+path = "external/rust/crates/csv"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/csv-core"
+path = "external/rust/crates/csv-core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/data-encoding"
+path = "external/rust/crates/data-encoding"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/der"
+path = "external/rust/crates/der"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/der_derive"
+path = "external/rust/crates/der_derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/der-oid-macro"
+path = "external/rust/crates/der-oid-macro"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/der-parser"
+path = "external/rust/crates/der-parser"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/derive_arbitrary"
+path = "external/rust/crates/derive_arbitrary"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/derive-getters"
+path = "external/rust/crates/derive-getters"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/document-features"
+path = "external/rust/crates/document-features"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/downcast-rs"
+path = "external/rust/crates/downcast-rs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/either"
+path = "external/rust/crates/either"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/enumn"
+path = "external/rust/crates/enumn"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/env_logger"
+path = "external/rust/crates/env_logger"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/epoll"
+path = "external/rust/crates/epoll"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/fallible-iterator"
+path = "external/rust/crates/fallible-iterator"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/fallible-streaming-iterator"
+path = "external/rust/crates/fallible-streaming-iterator"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/fastrand"
+path = "external/rust/crates/fastrand"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/flagset"
+path = "external/rust/crates/flagset"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/flate2"
+path = "external/rust/crates/flate2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/fnv"
+path = "external/rust/crates/fnv"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/foreign-types"
+path = "external/rust/crates/foreign-types"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/foreign-types-shared"
+path = "external/rust/crates/foreign-types-shared"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/form_urlencoded"
+path = "external/rust/crates/form_urlencoded"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures"
+path = "external/rust/crates/futures"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-channel"
+path = "external/rust/crates/futures-channel"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-core"
+path = "external/rust/crates/futures-core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-executor"
+path = "external/rust/crates/futures-executor"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-io"
+path = "external/rust/crates/futures-io"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-macro"
+path = "external/rust/crates/futures-macro"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-sink"
+path = "external/rust/crates/futures-sink"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-task"
+path = "external/rust/crates/futures-task"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-test"
+path = "external/rust/crates/futures-test"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/futures-util"
+path = "external/rust/crates/futures-util"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/fxhash"
+path = "external/rust/crates/fxhash"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/gdbstub"
+path = "external/rust/crates/gdbstub"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/gdbstub_arch"
+path = "external/rust/crates/gdbstub_arch"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/getrandom"
+path = "external/rust/crates/getrandom"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/glam"
+path = "external/rust/crates/glam"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/glob"
+path = "external/rust/crates/glob"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/googletest"
+path = "external/rust/crates/googletest"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/googletest_macro"
+path = "external/rust/crates/googletest_macro"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/grpcio"
+path = "external/rust/crates/grpcio"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/grpcio-compiler"
+path = "external/rust/crates/grpcio-compiler"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/grpcio-sys"
+path = "external/rust/crates/grpcio-sys"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/half"
+path = "external/rust/crates/half"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/hashbrown"
+path = "external/rust/crates/hashbrown"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/hashlink"
+path = "external/rust/crates/hashlink"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/heck"
+path = "external/rust/crates/heck"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/hex"
+path = "external/rust/crates/hex"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/http"
+path = "external/rust/crates/http"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/httparse"
+path = "external/rust/crates/httparse"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/idna"
+path = "external/rust/crates/idna"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/indexmap"
+path = "external/rust/crates/indexmap"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ini"
+path = "external/rust/crates/ini"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/instant"
+path = "external/rust/crates/instant"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/intrusive-collections"
+path = "external/rust/crates/intrusive-collections"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/itertools"
+path = "external/rust/crates/itertools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/itoa"
+path = "external/rust/crates/itoa"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/jni"
+path = "external/rust/crates/jni"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/jni-sys"
+path = "external/rust/crates/jni-sys"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/json5"
+path = "external/rust/crates/json5"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/kernlog"
+path = "external/rust/crates/kernlog"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/lazy_static"
+path = "external/rust/crates/lazy_static"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/lazycell"
+path = "external/rust/crates/lazycell"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/libc"
+path = "external/rust/crates/libc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/libfuzzer-sys"
+path = "external/rust/crates/libfuzzer-sys"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/libloading"
+path = "external/rust/crates/libloading"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/libm"
+path = "external/rust/crates/libm"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/libsqlite3-sys"
+path = "external/rust/crates/libsqlite3-sys"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/libtest-mimic"
+path = "external/rust/crates/libtest-mimic"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/libz-sys"
+path = "external/rust/crates/libz-sys"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/linked-hash-map"
+path = "external/rust/crates/linked-hash-map"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/linkme"
+path = "external/rust/crates/linkme"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/linkme-impl"
+path = "external/rust/crates/linkme-impl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/litrs"
+path = "external/rust/crates/litrs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/lock_api"
+path = "external/rust/crates/lock_api"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/log"
+path = "external/rust/crates/log"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/lru-cache"
+path = "external/rust/crates/lru-cache"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/macaddr"
+path = "external/rust/crates/macaddr"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/managed"
+path = "external/rust/crates/managed"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/memchr"
+path = "external/rust/crates/memchr"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/memoffset"
+path = "external/rust/crates/memoffset"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/merge"
+path = "external/rust/crates/merge"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/merge_derive"
+path = "external/rust/crates/merge_derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/miette"
+path = "external/rust/crates/miette"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/miette-derive"
+path = "external/rust/crates/miette-derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/minimal-lexical"
+path = "external/rust/crates/minimal-lexical"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/mio"
+path = "external/rust/crates/mio"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/moveit"
+path = "external/rust/crates/moveit"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/named-lock"
+path = "external/rust/crates/named-lock"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/nix"
+path = "external/rust/crates/nix"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/no-panic"
+path = "external/rust/crates/no-panic"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/nom"
+path = "external/rust/crates/nom"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/num-bigint"
+path = "external/rust/crates/num-bigint"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/num-derive"
+path = "external/rust/crates/num-derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/num-integer"
+path = "external/rust/crates/num-integer"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/num-traits"
+path = "external/rust/crates/num-traits"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/num_cpus"
+path = "external/rust/crates/num_cpus"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/octets"
+path = "external/rust/crates/octets"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/oid-registry"
+path = "external/rust/crates/oid-registry"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/once_cell"
+path = "external/rust/crates/once_cell"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/oorandom"
+path = "external/rust/crates/oorandom"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/openssl"
+path = "external/rust/crates/openssl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/openssl-macros"
+path = "external/rust/crates/openssl-macros"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/os_str_bytes"
+path = "external/rust/crates/os_str_bytes"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/parking_lot"
+path = "external/rust/crates/parking_lot"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/parking_lot_core"
+path = "external/rust/crates/parking_lot_core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pathdiff"
+path = "external/rust/crates/pathdiff"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/paste"
+path = "external/rust/crates/paste"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/peeking_take_while"
+path = "external/rust/crates/peeking_take_while"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/percent-encoding"
+path = "external/rust/crates/percent-encoding"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pest"
+path = "external/rust/crates/pest"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pest_derive"
+path = "external/rust/crates/pest_derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pest_generator"
+path = "external/rust/crates/pest_generator"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pest_meta"
+path = "external/rust/crates/pest_meta"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pdl-compiler"
+path = "external/rust/crates/pdl-compiler"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pdl-runtime"
+path = "external/rust/crates/pdl-runtime"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pin-project"
+path = "external/rust/crates/pin-project"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pin-project-internal"
+path = "external/rust/crates/pin-project-internal"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pin-project-lite"
+path = "external/rust/crates/pin-project-lite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pin-utils"
+path = "external/rust/crates/pin-utils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pkcs1"
+path = "external/rust/crates/pkcs1"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/pkcs8"
+path = "external/rust/crates/pkcs8"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/plotters"
+path = "external/rust/crates/plotters"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/plotters-backend"
+path = "external/rust/crates/plotters-backend"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/plotters-svg"
+path = "external/rust/crates/plotters-svg"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ppv-lite86"
+path = "external/rust/crates/ppv-lite86"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/prettyplease"
+path = "external/rust/crates/prettyplease"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/proc-macro-error"
+path = "external/rust/crates/proc-macro-error"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/proc-macro-error-attr"
+path = "external/rust/crates/proc-macro-error-attr"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/proc-macro-nested"
+path = "external/rust/crates/proc-macro-nested"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/proc-macro2"
+path = "external/rust/crates/proc-macro2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/protobuf"
+path = "external/rust/crates/protobuf"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/protobuf-codegen"
+path = "external/rust/crates/protobuf-codegen"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/protobuf-json-mapping"
+path = "external/rust/crates/protobuf-json-mapping"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/protobuf-parse"
+path = "external/rust/crates/protobuf-parse"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/protobuf-support"
+path = "external/rust/crates/protobuf-support"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/quiche"
+path = "external/rust/crates/quiche"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/quickcheck"
+path = "external/rust/crates/quickcheck"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/quote"
+path = "external/rust/crates/quote"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rand"
+path = "external/rust/crates/rand"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rand_chacha"
+path = "external/rust/crates/rand_chacha"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rand_core"
+path = "external/rust/crates/rand_core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rand_xorshift"
+path = "external/rust/crates/rand_xorshift"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rayon"
+path = "external/rust/crates/rayon"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rayon-core"
+path = "external/rust/crates/rayon-core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/regex"
+path = "external/rust/crates/regex"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/regex-automata"
+path = "external/rust/crates/regex-automata"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/regex-syntax"
+path = "external/rust/crates/regex-syntax"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/remain"
+path = "external/rust/crates/remain"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/remove_dir_all"
+path = "external/rust/crates/remove_dir_all"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ring"
+path = "external/rust/crates/ring"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ron"
+path = "external/rust/crates/ron"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rusqlite"
+path = "external/rust/crates/rusqlite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rustc-hash"
+path = "external/rust/crates/rustc-hash"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rusticata-macros"
+path = "external/rust/crates/rusticata-macros"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rustc-demangle"
+path = "external/rust/crates/rustc-demangle"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rustc-demangle-capi"
+path = "external/rust/crates/rustc-demangle-capi"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/rustversion"
+path = "external/rust/crates/rustversion"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ryu"
+path = "external/rust/crates/ryu"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/same-file"
+path = "external/rust/crates/same-file"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/scopeguard"
+path = "external/rust/crates/scopeguard"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/sec1"
+path = "external/rust/crates/sec1"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/semver"
+path = "external/rust/crates/semver"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/serde"
+path = "external/rust/crates/serde"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/serde_cbor"
+path = "external/rust/crates/serde_cbor"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/serde_derive"
+path = "external/rust/crates/serde_derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/serde_json"
+path = "external/rust/crates/serde_json"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/serde_spanned"
+path = "external/rust/crates/serde_spanned"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/serde_test"
+path = "external/rust/crates/serde_test"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/serde_yaml"
+path = "external/rust/crates/serde_yaml"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/serde-xml-rs"
+path = "external/rust/crates/serde-xml-rs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/shared_child"
+path = "external/rust/crates/shared_child"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/shared_library"
+path = "external/rust/crates/shared_library"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/sharded-slab"
+path = "external/rust/crates/sharded-slab"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/shlex"
+path = "external/rust/crates/shlex"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/slab"
+path = "external/rust/crates/slab"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/smallvec"
+path = "external/rust/crates/smallvec"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/smccc"
+path = "external/rust/crates/smccc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/socket2"
+path = "external/rust/crates/socket2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/spin"
+path = "external/rust/crates/spin"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/spki"
+path = "external/rust/crates/spki"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/static_assertions"
+path = "external/rust/crates/static_assertions"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/syn"
+path = "external/rust/crates/syn"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/synstructure"
+path = "external/rust/crates/synstructure"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/syn-mid"
+path = "external/rust/crates/syn-mid"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tempfile"
+path = "external/rust/crates/tempfile"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/termcolor"
+path = "external/rust/crates/termcolor"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/textwrap"
+path = "external/rust/crates/textwrap"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/thiserror"
+path = "external/rust/crates/thiserror"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/thiserror-impl"
+path = "external/rust/crates/thiserror-impl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/thread_local"
+path = "external/rust/crates/thread_local"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/threadpool"
+path = "external/rust/crates/threadpool"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tinyjson"
+path = "external/rust/crates/tinyjson"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tinytemplate"
+path = "external/rust/crates/tinytemplate"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tinyvec"
+path = "external/rust/crates/tinyvec"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tinyvec_macros"
+path = "external/rust/crates/tinyvec_macros"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tokio"
+path = "external/rust/crates/tokio"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tokio-macros"
+path = "external/rust/crates/tokio-macros"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tokio-stream"
+path = "external/rust/crates/tokio-stream"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tokio-test"
+path = "external/rust/crates/tokio-test"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tokio-util"
+path = "external/rust/crates/tokio-util"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/toml_datetime"
+path = "external/rust/crates/toml_datetime"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/toml_edit"
+path = "external/rust/crates/toml_edit"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/toml"
+path = "external/rust/crates/toml"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tracing"
+path = "external/rust/crates/tracing"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tracing-core"
+path = "external/rust/crates/tracing-core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tracing-attributes"
+path = "external/rust/crates/tracing-attributes"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tracing-subscriber"
+path = "external/rust/crates/tracing-subscriber"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/tungstenite"
+path = "external/rust/crates/tungstenite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/ucd-trie"
+path = "external/rust/crates/ucd-trie"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/unicode-bidi"
+path = "external/rust/crates/unicode-bidi"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/unicode-ident"
+path = "external/rust/crates/unicode-ident"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/unicode-normalization"
+path = "external/rust/crates/unicode-normalization"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/unicode-segmentation"
+path = "external/rust/crates/unicode-segmentation"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/unicode-width"
+path = "external/rust/crates/unicode-width"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/unicode-xid"
+path = "external/rust/crates/unicode-xid"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/unsafe-libyaml"
+path = "external/rust/crates/unsafe-libyaml"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/untrusted"
+path = "external/rust/crates/untrusted"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/url"
+path = "external/rust/crates/url"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/userfaultfd"
+path = "external/rust/crates/userfaultfd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/userfaultfd-sys"
+path = "external/rust/crates/userfaultfd-sys"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/utf-8"
+path = "external/rust/crates/utf-8"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/uuid"
+path = "external/rust/crates/uuid"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/vhost"
+path = "external/rust/crates/vhost"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/vhost-device-vsock"
+path = "external/rust/crates/vhost-device-vsock"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/vhost-user-backend"
+path = "external/rust/crates/vhost-user-backend"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/virtio-bindings"
+path = "external/rust/crates/virtio-bindings"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/virtio-drivers"
+path = "external/rust/crates/virtio-drivers"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/virtio-queue"
+path = "external/rust/crates/virtio-queue"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/virtio-vsock"
+path = "external/rust/crates/virtio-vsock"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/vm-memory"
+path = "external/rust/crates/vm-memory"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/vmm-sys-util"
+path = "external/rust/crates/vmm-sys-util"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/vsock"
+path = "external/rust/crates/vsock"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/vulkano"
+path = "external/rust/crates/vulkano"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/walkdir"
+path = "external/rust/crates/walkdir"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/weak-table"
+path = "external/rust/crates/weak-table"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/webpki"
+path = "external/rust/crates/webpki"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/which"
+path = "external/rust/crates/which"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/winnow"
+path = "external/rust/crates/winnow"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/x509-cert"
+path = "external/rust/crates/x509-cert"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/x509-parser"
+path = "external/rust/crates/x509-parser"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/xml-rs"
+path = "external/rust/crates/xml-rs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/yaml-rust"
+path = "external/rust/crates/yaml-rust"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/zerocopy"
+path = "external/rust/crates/zerocopy"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/zerocopy-derive"
+path = "external/rust/crates/zerocopy-derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/zeroize"
+path = "external/rust/crates/zeroize"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/zeroize_derive"
+path = "external/rust/crates/zeroize_derive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/crates/zip"
+path = "external/rust/crates/zip"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/beto-rust"
+path = "external/rust/beto-rust"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/cxx"
+path = "external/rust/cxx"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/autocxx"
+path = "external/rust/autocxx"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/rust/pica"
+path = "external/rust/pica"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ruy"
+path = "external/ruy"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/s2-geometry-library-java"
+path = "external/s2-geometry-library-java"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/sandboxed-api"
+path = "external/sandboxed-api"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/scapy"
+path = "external/scapy"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/scrypt"
+path = "external/scrypt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/scudo"
+path = "external/scudo"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/sdv/vsomeip"
+path = "external/sdv/vsomeip"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/seccomp-tests"
+path = "external/seccomp-tests"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/selinux"
+path = "external/selinux"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/setfilters"
+path = "external/setfilters"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/setupcompat"
+path = "external/setupcompat"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/setupdesign"
+path = "external/setupdesign"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/sfntly"
+path = "external/sfntly"
+groups = ["pdk", "qcom_msm8x26"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/sg3_utils"
+path = "external/sg3_utils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/shaderc/spirv-headers"
+path = "external/shaderc/spirv-headers"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/shflags"
+path = "external/shflags"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/skia"
+path = "external/skia"
+groups = ["pdk", "qcom_msm8x26"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/sl4a"
+path = "external/sl4a"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/slf4j"
+path = "external/slf4j"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/smali"
+path = "external/smali"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/snakeyaml"
+path = "external/snakeyaml"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/sonic"
+path = "external/sonic"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/sonivox"
+path = "external/sonivox"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/speex"
+path = "external/speex"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/sqlite"
+path = "external/sqlite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/spdx-tools"
+path = "external/spdx-tools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/squashfs-tools"
+path = "external/squashfs-tools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/stardoc"
+path = "external/stardoc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/starlark-go"
+path = "external/starlark-go"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/stg"
+path = "external/stg"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/strace"
+path = "external/strace"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/stressapptest"
+path = "external/stressapptest"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/subsampling-scale-image-view"
+path = "external/subsampling-scale-image-view"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/swiftshader"
+path = "external/swiftshader"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tagsoup"
+path = "external/tagsoup"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tcpdump"
+path = "external/tcpdump"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tensorflow"
+path = "external/tensorflow"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/TestParameterInjector"
+path = "external/TestParameterInjector"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/testng"
+path = "external/testng"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tflite-support"
+path = "external/tflite-support"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/timezone-boundary-builder"
+path = "external/timezone-boundary-builder"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tinyalsa"
+path = "external/tinyalsa"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tinyalsa_new"
+path = "external/tinyalsa_new"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tinycompress"
+path = "external/tinycompress"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tinyxml2"
+path = "external/tinyxml2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/toolchain-utils"
+path = "external/toolchain-utils"
+recursive = false
+
+[[dependencies]]
+name = "platform/external/toybox"
+path = "external/toybox"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tpm2-tss"
+path = "external/tpm2-tss"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/trace-cmd"
+path = "external/trace-cmd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/tremolo"
+path = "external/tremolo"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/truth"
+path = "external/truth"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/turbine"
+path = "external/turbine"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/unicode"
+path = "external/unicode"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/universal-tween-engine"
+path = "external/universal-tween-engine"
+recursive = false
+
+[[dependencies]]
+name = "platform/external/ukey2"
+path = "external/ukey2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/uwb"
+path = "external/uwb"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/v4l2_codec2"
+path = "external/v4l2_codec2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/vboot_reference"
+path = "external/vboot_reference"
+groups = ["vboot", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/virglrenderer"
+path = "external/virglrenderer"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/vixl"
+path = "external/vixl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/vogar"
+path = "external/vogar"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/volley"
+path = "external/volley"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/vulkan-headers"
+path = "external/vulkan-headers"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/vulkan-validation-layers"
+path = "external/vulkan-validation-layers"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/walt"
+path = "external/walt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/wayland"
+path = "external/wayland"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/wayland-protocols"
+path = "external/wayland-protocols"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/webp"
+path = "external/webp"
+groups = ["pdk", "qcom_msm8x26"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/webrtc"
+path = "external/webrtc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/wpa_supplicant_8"
+path = "external/wpa_supplicant_8"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/wmediumd"
+path = "external/wmediumd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/wuffs-mirror-release-c"
+path = "external/wuffs-mirror-release-c"
+groups = ["pdk", "qcom_msm8x26"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/wycheproof"
+path = "external/wycheproof"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/xmp_toolkit"
+path = "external/xmp_toolkit"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/xz-embedded"
+path = "external/xz-embedded"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/xz-java"
+path = "external/xz-java"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/XNNPACK"
+path = "external/XNNPACK"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/yapf"
+path = "external/yapf"
+groups = ["vts", "projectarch", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/zlib"
+path = "external/zlib"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/zopfli"
+path = "external/zopfli"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/zstd"
+path = "external/zstd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/zucchini"
+path = "external/zucchini"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/external/zxing"
+path = "external/zxing"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/av"
+path = "frameworks/av"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/base"
+path = "frameworks/base"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/compile/libbcc"
+path = "frameworks/compile/libbcc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/compile/mclinker"
+path = "frameworks/compile/mclinker"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/compile/slang"
+path = "frameworks/compile/slang"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/ex"
+path = "frameworks/ex"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/hardware/interfaces"
+path = "frameworks/hardware/interfaces"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/layoutlib"
+path = "frameworks/layoutlib"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/libs/binary_translation"
+path = "frameworks/libs/binary_translation"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/libs/systemui"
+path = "frameworks/libs/systemui"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/libs/modules-utils"
+path = "frameworks/libs/modules-utils"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/libs/native_bridge_support"
+path = "frameworks/libs/native_bridge_support"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/libs/service_entitlement"
+path = "frameworks/libs/service_entitlement"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/libs/gsma_services"
+path = "frameworks/libs/gsma_services"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/minikin"
+path = "frameworks/minikin"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/multidex"
+path = "frameworks/multidex"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/native"
+path = "frameworks/native"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/bitmap"
+path = "frameworks/opt/bitmap"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/calendar"
+path = "frameworks/opt/calendar"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/car/services"
+path = "frameworks/opt/car/services"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/car/setupwizard"
+path = "frameworks/opt/car/setupwizard"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/chips"
+path = "frameworks/opt/chips"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/colorpicker"
+path = "frameworks/opt/colorpicker"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/localepicker"
+path = "frameworks/opt/localepicker"
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/net/ethernet"
+path = "frameworks/opt/net/ethernet"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/net/ims"
+path = "frameworks/opt/net/ims"
+groups = ["frameworks_ims", "pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/net/voip"
+path = "frameworks/opt/net/voip"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/net/wifi"
+path = "frameworks/opt/net/wifi"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/photoviewer"
+path = "frameworks/opt/photoviewer"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/setupwizard"
+path = "frameworks/opt/setupwizard"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/telephony"
+path = "frameworks/opt/telephony"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/timezonepicker"
+path = "frameworks/opt/timezonepicker"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/tv/tvsystem"
+path = "frameworks/opt/tv/tvsystem"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/opt/vcard"
+path = "frameworks/opt/vcard"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/proto_logging"
+path = "frameworks/proto_logging"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/rs"
+path = "frameworks/rs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/frameworks/wilhelm"
+path = "frameworks/wilhelm"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/broadcom/libbt"
+path = "hardware/broadcom/libbt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/broadcom/wlan"
+path = "hardware/broadcom/wlan"
+groups = ["pdk", "broadcom_wlan"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/aemu"
+path = "hardware/google/aemu"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/apf"
+path = "hardware/google/apf"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/av"
+path = "hardware/google/av"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/camera"
+path = "hardware/google/camera"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/easel"
+path = "hardware/google/easel"
+groups = ["pdk", "easel"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/gchips"
+path = "hardware/google/gchips"
+groups = ["pdk-lassen", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/gfxstream"
+path = "hardware/google/gfxstream"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/graphics/common"
+path = "hardware/google/graphics/common"
+groups = ["pdk-lassen", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/graphics/gs101"
+path = "hardware/google/graphics/gs101"
+groups = ["pdk-lassen", "pdk-gs-arm"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/graphics/gs201"
+path = "hardware/google/graphics/gs201"
+groups = ["cloudripper"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/interfaces"
+path = "hardware/google/interfaces"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/pixel"
+path = "hardware/google/pixel"
+groups = ["generic_fs", "pixel"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/pixel-sepolicy"
+path = "hardware/google/pixel-sepolicy"
+groups = ["generic_fs", "pixel"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/google/trusty"
+path = "hardware/google/trusty"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/interfaces"
+path = "hardware/interfaces"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/invensense"
+path = "hardware/invensense"
+groups = ["invensense", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/knowles/athletico/sound_trigger_hal"
+path = "hardware/knowles/athletico/sound_trigger_hal"
+groups = ["coral", "generic_fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/libhardware"
+path = "hardware/libhardware"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/libhardware_legacy"
+path = "hardware/libhardware_legacy"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/nxp/keymint"
+path = "hardware/nxp/keymint"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/nxp/nfc"
+path = "hardware/nxp/nfc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/nxp/uwb"
+path = "hardware/nxp/uwb"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/nxp/secure_element"
+path = "hardware/nxp/secure_element"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/nxp/weaver"
+path = "hardware/nxp/weaver"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/audio"
+path = "hardware/qcom/audio"
+groups = ["qcom", "qcom_audio", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/bootctrl"
+path = "hardware/qcom/bootctrl"
+groups = ["pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/bt"
+path = "hardware/qcom/bt"
+groups = ["qcom", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/camera"
+path = "hardware/qcom/camera"
+groups = ["qcom_camera", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/data/ipacfg-mgr"
+path = "hardware/qcom/data/ipacfg-mgr"
+groups = ["qcom", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/display"
+path = "hardware/qcom/display"
+groups = ["pdk-qcom", "qcom", "qcom_display"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/gps"
+path = "hardware/qcom/gps"
+groups = ["qcom", "qcom_gps", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/keymaster"
+path = "hardware/qcom/keymaster"
+groups = ["qcom", "qcom_keymaster", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/media"
+path = "hardware/qcom/media"
+groups = ["qcom", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/power"
+path = "hardware/qcom/power"
+groups = ["qcom", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm7150/gps"
+path = "hardware/qcom/sm7150/gps"
+groups = ["qcom_sm7150"]
+recursive = false
+
+[[dependencies.linkfiles]]
+src = "os_pickup.mk"
+dest = "hardware/qcom/sm7150/Android.mk"
+
+[[dependencies.linkfiles]]
+src = "os_pickup.bp"
+dest = "hardware/qcom/sm7150/Android.bp"
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm7250/display"
+path = "hardware/qcom/sm7250/display"
+groups = ["qcom_sm7250"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm7250/gps"
+path = "hardware/qcom/sm7250/gps"
+groups = ["qcom_sm7250"]
+recursive = false
+
+[[dependencies.linkfiles]]
+src = "os_pickup.mk"
+dest = "hardware/qcom/sm7250/Android.mk"
+
+[[dependencies.linkfiles]]
+src = "os_pickup.bp"
+dest = "hardware/qcom/sm7250/Android.bp"
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm7250/media"
+path = "hardware/qcom/sm7250/media"
+groups = ["qcom_sm7250"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm8150/data/ipacfg-mgr"
+path = "hardware/qcom/sm8150/data/ipacfg-mgr"
+groups = ["qcom_sm8150"]
+recursive = false
+
+[[dependencies.linkfiles]]
+src = "os_pickup.mk"
+dest = "hardware/qcom/sm8150/Android.mk"
+
+[[dependencies.linkfiles]]
+src = "os_pickup.bp"
+dest = "hardware/qcom/sm8150/Android.bp"
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm8150/display"
+path = "hardware/qcom/sm8150/display"
+groups = ["qcom_sm8150"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm8150/gps"
+path = "hardware/qcom/sm8150/gps"
+groups = ["qcom_sm8150"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm8150/media"
+path = "hardware/qcom/sm8150/media"
+groups = ["qcom_sm8150"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm8150/thermal"
+path = "hardware/qcom/sm8150/thermal"
+groups = ["qcom_sm8150"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm8150/vr"
+path = "hardware/qcom/sm8150/vr"
+groups = ["qcom_sm8150"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/qcom/sm8150p/gps"
+path = "hardware/qcom/sm8150p/gps"
+groups = ["qcom_sm8150p"]
+recursive = false
+
+[[dependencies.linkfiles]]
+src = "os_pickup.mk"
+dest = "hardware/qcom/sm8150p/Android.mk"
+
+[[dependencies.linkfiles]]
+src = "os_pickup.bp"
+dest = "hardware/qcom/sm8150p/Android.bp"
+
+[[dependencies]]
+name = "platform/hardware/qcom/wlan"
+path = "hardware/qcom/wlan"
+groups = ["qcom_wlan", "pdk-qcom"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/ril"
+path = "hardware/ril"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/st/nfc"
+path = "hardware/st/nfc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/st/secure_element"
+path = "hardware/st/secure_element"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/st/secure_element2"
+path = "hardware/st/secure_element2"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/samsung/nfc"
+path = "hardware/samsung/nfc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/synaptics/wlan"
+path = "hardware/synaptics/wlan"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/hardware/ti/am57x"
+path = "hardware/ti/am57x"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/configs"
+path = "kernel/configs"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/4.19/arm64"
+path = "kernel/prebuilts/4.19/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/5.4/arm64"
+path = "kernel/prebuilts/5.4/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/5.4/x86-64"
+path = "kernel/prebuilts/5.4/x86_64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/5.10/arm64"
+path = "kernel/prebuilts/5.10/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/5.10/x86-64"
+path = "kernel/prebuilts/5.10/x86_64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/5.15/arm64"
+path = "kernel/prebuilts/5.15/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/5.15/x86-64"
+path = "kernel/prebuilts/5.15/x86_64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/6.1/arm64"
+path = "kernel/prebuilts/6.1/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/6.1/x86-64"
+path = "kernel/prebuilts/6.1/x86_64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/mainline/arm64"
+path = "kernel/prebuilts/mainline/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/mainline/x86-64"
+path = "kernel/prebuilts/mainline/x86_64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/4.19/arm64"
+path = "kernel/prebuilts/common-modules/virtual-device/4.19/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/4.19/x86-64"
+path = "kernel/prebuilts/common-modules/virtual-device/4.19/x86-64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/5.4/arm64"
+path = "kernel/prebuilts/common-modules/virtual-device/5.4/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/5.4/x86-64"
+path = "kernel/prebuilts/common-modules/virtual-device/5.4/x86-64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/5.10/arm64"
+path = "kernel/prebuilts/common-modules/virtual-device/5.10/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/5.10/x86-64"
+path = "kernel/prebuilts/common-modules/virtual-device/5.10/x86-64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/5.15/arm64"
+path = "kernel/prebuilts/common-modules/virtual-device/5.15/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/5.15/x86-64"
+path = "kernel/prebuilts/common-modules/virtual-device/5.15/x86-64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/6.1/arm64"
+path = "kernel/prebuilts/common-modules/virtual-device/6.1/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/6.1/x86-64"
+path = "kernel/prebuilts/common-modules/virtual-device/6.1/x86-64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/mainline/arm64"
+path = "kernel/prebuilts/common-modules/virtual-device/mainline/arm64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/prebuilts/common-modules/virtual-device/mainline/x86-64"
+path = "kernel/prebuilts/common-modules/virtual-device/mainline/x86-64"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "kernel/tests"
+path = "kernel/tests"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/libcore"
+path = "libcore"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/libnativehelper"
+path = "libnativehelper"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/BasicSmsReceiver"
+path = "packages/apps/BasicSmsReceiver"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Browser2"
+path = "packages/apps/Browser2"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Calendar"
+path = "packages/apps/Calendar"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Camera2"
+path = "packages/apps/Camera2"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/Calendar"
+path = "packages/apps/Car/Calendar"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/SystemUI"
+path = "packages/apps/Car/SystemUI"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/Cluster"
+path = "packages/apps/Car/Cluster"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/DebuggingRestrictionController"
+path = "packages/apps/Car/DebuggingRestrictionController"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/DialerPrebuilt"
+path = "packages/apps/Car/DialerPrebuilt"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/LatinIME"
+path = "packages/apps/Car/LatinIME"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/Launcher"
+path = "packages/apps/Car/Launcher"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/LinkViewer"
+path = "packages/apps/Car/LinkViewer"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/LocalMediaPlayer"
+path = "packages/apps/Car/LocalMediaPlayer"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/MediaPrebuilt"
+path = "packages/apps/Car/MediaPrebuilt"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/MessengerPrebuilt"
+path = "packages/apps/Car/MessengerPrebuilt"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/Notification"
+path = "packages/apps/Car/Notification"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/Provision"
+path = "packages/apps/Car/Provision"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/Radio"
+path = "packages/apps/Car/Radio"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/RotaryController"
+path = "packages/apps/Car/RotaryController"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/Settings"
+path = "packages/apps/Car/Settings"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/SettingsIntelligence"
+path = "packages/apps/Car/SettingsIntelligence"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/systemlibs"
+path = "packages/apps/Car/systemlibs"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Car/SystemUpdater"
+path = "packages/apps/Car/SystemUpdater"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/CarrierConfig"
+path = "packages/apps/CarrierConfig"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/CellBroadcastReceiver"
+path = "packages/apps/CellBroadcastReceiver"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/CertInstaller"
+path = "packages/apps/CertInstaller"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Contacts"
+path = "packages/apps/Contacts"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/DeskClock"
+path = "packages/apps/DeskClock"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/DevCamera"
+path = "packages/apps/DevCamera"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Dialer"
+path = "packages/apps/Dialer"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/DocumentsUI"
+path = "packages/apps/DocumentsUI"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/EmergencyInfo"
+path = "packages/apps/EmergencyInfo"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Gallery"
+path = "packages/apps/Gallery"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Gallery2"
+path = "packages/apps/Gallery2"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/HTMLViewer"
+path = "packages/apps/HTMLViewer"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/ImsServiceEntitlement"
+path = "packages/apps/ImsServiceEntitlement"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/KeyChain"
+path = "packages/apps/KeyChain"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Launcher3"
+path = "packages/apps/Launcher3"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/LegacyCamera"
+path = "packages/apps/LegacyCamera"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/ManagedProvisioning"
+path = "packages/apps/ManagedProvisioning"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Messaging"
+path = "packages/apps/Messaging"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Music"
+path = "packages/apps/Music"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/MusicFX"
+path = "packages/apps/MusicFX"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Nfc"
+path = "packages/apps/Nfc"
+groups = ["apps_nfc", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/OnDeviceAppPrediction"
+path = "packages/apps/OnDeviceAppPrediction"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/PhoneCommon"
+path = "packages/apps/PhoneCommon"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Protips"
+path = "packages/apps/Protips"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Provision"
+path = "packages/apps/Provision"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/QuickSearchBox"
+path = "packages/apps/QuickSearchBox"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/QuickAccessWallet"
+path = "packages/apps/QuickAccessWallet"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/SafetyRegulatoryInfo"
+path = "packages/apps/SafetyRegulatoryInfo"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/SampleLocationAttribution"
+path = "packages/apps/SampleLocationAttribution"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/SecureElement"
+path = "packages/apps/SecureElement"
+groups = ["apps_se", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Settings"
+path = "packages/apps/Settings"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/SettingsIntelligence"
+path = "packages/apps/SettingsIntelligence"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/SpareParts"
+path = "packages/apps/SpareParts"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Stk"
+path = "packages/apps/Stk"
+groups = ["apps_stk", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/StorageManager"
+path = "packages/apps/StorageManager"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/SystemUIGo"
+path = "packages/apps/SystemUIGo"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Tag"
+path = "packages/apps/Tag"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Test/connectivity"
+path = "packages/apps/Test/connectivity"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/ThemePicker"
+path = "packages/apps/ThemePicker"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/Traceur"
+path = "packages/apps/Traceur"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/TvSettings"
+path = "packages/apps/TvSettings"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/TV"
+path = "packages/apps/TV"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/UniversalMediaPlayer"
+path = "packages/apps/UniversalMediaPlayer"
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/WallpaperPicker"
+path = "packages/apps/WallpaperPicker"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/apps/WallpaperPicker2"
+path = "packages/apps/WallpaperPicker2"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/inputmethods/LatinIME"
+path = "packages/inputmethods/LatinIME"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/inputmethods/LeanbackIME"
+path = "packages/inputmethods/LeanbackIME"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/adb"
+path = "packages/modules/adb"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/AdServices"
+path = "packages/modules/AdServices"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/AppSearch"
+path = "packages/modules/AppSearch"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/ArtPrebuilt"
+path = "packages/modules/ArtPrebuilt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Bluetooth"
+path = "packages/modules/Bluetooth"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/CaptivePortalLogin"
+path = "packages/modules/CaptivePortalLogin"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/CellBroadcastService"
+path = "packages/modules/CellBroadcastService"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/common"
+path = "packages/modules/common"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/ConfigInfrastructure"
+path = "packages/modules/ConfigInfrastructure"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Connectivity"
+path = "packages/modules/Connectivity"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/CrashRecovery"
+path = "packages/modules/CrashRecovery"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Cronet"
+path = "packages/modules/Cronet"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/DeviceLock"
+path = "packages/modules/DeviceLock"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/ExtServices"
+path = "packages/modules/ExtServices"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/GeoTZ"
+path = "packages/modules/GeoTZ"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Gki"
+path = "packages/modules/Gki"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/HealthFitness"
+path = "packages/modules/HealthFitness"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/ImsMedia"
+path = "packages/modules/ImsMedia"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/IntentResolver"
+path = "packages/modules/IntentResolver"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/IPsec"
+path = "packages/modules/IPsec"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/DnsResolver"
+path = "packages/modules/DnsResolver"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Media"
+path = "packages/modules/Media"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/ModuleMetadata"
+path = "packages/modules/ModuleMetadata"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/NetworkPermissionConfig"
+path = "packages/modules/NetworkPermissionConfig"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/NetworkStack"
+path = "packages/modules/NetworkStack"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/NeuralNetworks"
+path = "packages/modules/NeuralNetworks"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/OnDevicePersonalization"
+path = "packages/modules/OnDevicePersonalization"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Permission"
+path = "packages/modules/Permission"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/RemoteKeyProvisioning"
+path = "packages/modules/RemoteKeyProvisioning"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/RuntimeI18n"
+path = "packages/modules/RuntimeI18n"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Scheduling"
+path = "packages/modules/Scheduling"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/SEPolicy"
+path = "packages/modules/SEPolicy"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/SdkExtensions"
+path = "packages/modules/SdkExtensions"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/StatsD"
+path = "packages/modules/StatsD"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Telephony"
+path = "packages/modules/Telephony"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/TestModule"
+path = "packages/modules/TestModule"
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/ThreadNetwork"
+path = "packages/modules/ThreadNetwork"
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Uwb"
+path = "packages/modules/Uwb"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Virtualization"
+path = "packages/modules/Virtualization"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/vndk"
+path = "packages/modules/vndk"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/modules/Wifi"
+path = "packages/modules/Wifi"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/BlockedNumberProvider"
+path = "packages/providers/BlockedNumberProvider"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/BookmarkProvider"
+path = "packages/providers/BookmarkProvider"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/CalendarProvider"
+path = "packages/providers/CalendarProvider"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/CallLogProvider"
+path = "packages/providers/CallLogProvider"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/ContactsProvider"
+path = "packages/providers/ContactsProvider"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/DownloadProvider"
+path = "packages/providers/DownloadProvider"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/MediaProvider"
+path = "packages/providers/MediaProvider"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/PartnerBookmarksProvider"
+path = "packages/providers/PartnerBookmarksProvider"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/TelephonyProvider"
+path = "packages/providers/TelephonyProvider"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/TvProvider"
+path = "packages/providers/TvProvider"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/providers/UserDictionaryProvider"
+path = "packages/providers/UserDictionaryProvider"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/screensavers/Basic"
+path = "packages/screensavers/Basic"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/screensavers/PhotoTable"
+path = "packages/screensavers/PhotoTable"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/BuiltInPrintService"
+path = "packages/services/BuiltInPrintService"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/AlternativeNetworkAccess"
+path = "packages/services/AlternativeNetworkAccess"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/Car"
+path = "packages/services/Car"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/DeviceAsWebcam"
+path = "packages/services/DeviceAsWebcam"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/Iwlan"
+path = "packages/services/Iwlan"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/Mms"
+path = "packages/services/Mms"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/Mtp"
+path = "packages/services/Mtp"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/Telecomm"
+path = "packages/services/Telecomm"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/services/Telephony"
+path = "packages/services/Telephony"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/wallpapers/ImageWallpaper"
+path = "packages/wallpapers/ImageWallpaper"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/packages/wallpapers/LivePicker"
+path = "packages/wallpapers/LivePicker"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/pdk"
+path = "pdk"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/platform_testing"
+path = "platform_testing"
+groups = ["pdk-fs", "pdk-cw-fs", "cts"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/abi-dumps/ndk"
+path = "prebuilts/abi-dumps/ndk"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/abi-dumps/platform"
+path = "prebuilts/abi-dumps/platform"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/abi-dumps/vndk"
+path = "prebuilts/abi-dumps/vndk"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/android-emulator"
+path = "prebuilts/android-emulator"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/asuite"
+path = "prebuilts/asuite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/bazel/common"
+path = "prebuilts/bazel/common"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/bazel/darwin-x86_64"
+path = "prebuilts/bazel/darwin-x86_64"
+groups = ["darwin", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/bazel/linux-x86_64"
+path = "prebuilts/bazel/linux-x86_64"
+groups = ["linux", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/build-tools"
+path = "prebuilts/build-tools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/bundletool"
+path = "prebuilts/bundletool"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/checkcolor"
+path = "prebuilts/checkcolor"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/checkstyle"
+path = "prebuilts/checkstyle"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/clang-tools"
+path = "prebuilts/clang-tools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/clang/host/darwin-x86"
+path = "prebuilts/clang/host/darwin-x86"
+groups = ["pdk", "darwin"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/clang/host/linux-x86"
+path = "prebuilts/clang/host/linux-x86"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/cmdline-tools"
+path = "prebuilts/cmdline-tools"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/devtools"
+path = "prebuilts/devtools"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8"
+path = "prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8"
+groups = ["pdk", "linux"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8"
+path = "prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8"
+groups = ["pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/go/darwin-x86"
+path = "prebuilts/go/darwin-x86"
+groups = ["darwin", "pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/go/linux-x86"
+path = "prebuilts/go/linux-x86"
+groups = ["linux", "pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/gradle-plugin"
+path = "prebuilts/gradle-plugin"
+groups = ["pdk", "pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/jdk/jdk11"
+path = "prebuilts/jdk/jdk11"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/jdk/jdk17"
+path = "prebuilts/jdk/jdk17"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/jdk/jdk8"
+path = "prebuilts/jdk/jdk8"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/jdk/jdk9"
+path = "prebuilts/jdk/jdk9"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/manifest-merger"
+path = "prebuilts/manifest-merger"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/maven_repo/bumptech"
+path = "prebuilts/maven_repo/bumptech"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/misc"
+path = "prebuilts/misc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/art"
+path = "prebuilts/module_sdk/art"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/AdServices"
+path = "prebuilts/module_sdk/AdServices"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/AppSearch"
+path = "prebuilts/module_sdk/AppSearch"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/Bluetooth"
+path = "prebuilts/module_sdk/Bluetooth"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/conscrypt"
+path = "prebuilts/module_sdk/conscrypt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/ConfigInfrastructure"
+path = "prebuilts/module_sdk/ConfigInfrastructure"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/Connectivity"
+path = "prebuilts/module_sdk/Connectivity"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/CrashRecovery"
+path = "prebuilts/module_sdk/CrashRecovery"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/DeviceLock"
+path = "prebuilts/module_sdk/DeviceLock"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/HealthFitness"
+path = "prebuilts/module_sdk/HealthFitness"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/IPsec"
+path = "prebuilts/module_sdk/IPsec"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/Media"
+path = "prebuilts/module_sdk/Media"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/MediaProvider"
+path = "prebuilts/module_sdk/MediaProvider"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/OnDevicePersonalization"
+path = "prebuilts/module_sdk/OnDevicePersonalization"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/Permission"
+path = "prebuilts/module_sdk/Permission"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/RemoteKeyProvisioning"
+path = "prebuilts/module_sdk/RemoteKeyProvisioning"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/Scheduling"
+path = "prebuilts/module_sdk/Scheduling"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/SdkExtensions"
+path = "prebuilts/module_sdk/SdkExtensions"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/StatsD"
+path = "prebuilts/module_sdk/StatsD"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/Uwb"
+path = "prebuilts/module_sdk/Uwb"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/module_sdk/Wifi"
+path = "prebuilts/module_sdk/Wifi"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/ndk"
+path = "prebuilts/ndk"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/ktlint"
+path = "prebuilts/ktlint"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/qemu-kernel"
+path = "prebuilts/qemu-kernel"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/remoteexecution-client"
+path = "prebuilts/remoteexecution-client"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/runtime"
+path = "prebuilts/runtime"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/rust"
+path = "prebuilts/rust"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/r8"
+path = "prebuilts/r8"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/sdk"
+path = "prebuilts/sdk"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/tools"
+path = "prebuilts/tools"
+groups = ["pdk", "tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/vndk/v29"
+path = "prebuilts/vndk/v29"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/vndk/v30"
+path = "prebuilts/vndk/v30"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/vndk/v31"
+path = "prebuilts/vndk/v31"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/vndk/v32"
+path = "prebuilts/vndk/v32"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/vndk/v33"
+path = "prebuilts/vndk/v33"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/prebuilts/vndk/v34"
+path = "prebuilts/vndk/v34"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/sdk"
+path = "sdk"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/apex"
+path = "system/apex"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/authgraph"
+path = "system/authgraph"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/bpf"
+path = "system/bpf"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/bpfprogs"
+path = "system/bpfprogs"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/ca-certificates"
+path = "system/ca-certificates"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/chre"
+path = "system/chre"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/connectivity/wificond"
+path = "system/connectivity/wificond"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/core"
+path = "system/core"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/dmesgd"
+path = "system/dmesgd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/extras"
+path = "system/extras"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/gatekeeper"
+path = "system/gatekeeper"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/gsid"
+path = "system/gsid"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/hardware/interfaces"
+path = "system/hardware/interfaces"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/hwservicemanager"
+path = "system/hwservicemanager"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/incremental_delivery"
+path = "system/incremental_delivery"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/iorap"
+path = "system/iorap"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/keymaster"
+path = "system/keymaster"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/keymint"
+path = "system/keymint"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libartpalette"
+path = "system/libartpalette"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libbase"
+path = "system/libbase"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libcppbor"
+path = "system/libcppbor"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libfmq"
+path = "system/libfmq"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libhidl"
+path = "system/libhidl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libhwbinder"
+path = "system/libhwbinder"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libprocinfo"
+path = "system/libprocinfo"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/librustutils"
+path = "system/librustutils"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libsysprop"
+path = "system/libsysprop"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libufdt"
+path = "system/libufdt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libvintf"
+path = "system/libvintf"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/libziparchive"
+path = "system/libziparchive"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/linkerconfig"
+path = "system/linkerconfig"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/logging"
+path = "system/logging"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/media"
+path = "system/media"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/memory/libion"
+path = "system/memory/libion"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/memory/libdmabufheap"
+path = "system/memory/libdmabufheap"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/memory/libmeminfo"
+path = "system/memory/libmeminfo"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/memory/libmemtrack"
+path = "system/memory/libmemtrack"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/memory/libmemunreachable"
+path = "system/memory/libmemunreachable"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/memory/lmkd"
+path = "system/memory/lmkd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/netd"
+path = "system/netd"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/nfc"
+path = "system/nfc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/nvram"
+path = "system/nvram"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/security"
+path = "system/security"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/sepolicy"
+path = "system/sepolicy"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/server_configurable_flags"
+path = "system/server_configurable_flags"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/teeui"
+path = "system/teeui"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/testing/gtest_extras"
+path = "system/testing/gtest_extras"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/timezone"
+path = "system/timezone"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/tools/aidl"
+path = "system/tools/aidl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/tools/hidl"
+path = "system/tools/hidl"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/tools/mkbootimg"
+path = "system/tools/mkbootimg"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/tools/sysprop"
+path = "system/tools/sysprop"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/tools/xsdc"
+path = "system/tools/xsdc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/unwinding"
+path = "system/unwinding"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/update_engine"
+path = "system/update_engine"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/system/vold"
+path = "system/vold"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/dittosuite"
+path = "test/dittosuite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/framework"
+path = "test/framework"
+groups = ["vts", "projectarch", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/robolectric-extensions"
+path = "test/robolectric-extensions"
+groups = ["pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/mlts/benchmark"
+path = "test/mlts/benchmark"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/mlts/models"
+path = "test/mlts/models"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/app_compat/csuite"
+path = "test/app_compat/csuite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/cts-root"
+path = "test/cts-root"
+recursive = false
+
+[[dependencies]]
+name = "platform/test/mts"
+path = "test/mts"
+recursive = false
+
+[[dependencies]]
+name = "platform/test/suite_harness"
+path = "test/suite_harness"
+groups = ["cts", "pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/vts"
+path = "test/vts"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/vts-testcase/hal"
+path = "test/vts-testcase/hal"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/vts-testcase/hal-trace"
+path = "test/vts-testcase/hal-trace"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/vts-testcase/kernel"
+path = "test/vts-testcase/kernel"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/vts-testcase/nbu"
+path = "test/vts-testcase/nbu"
+groups = ["vts", "projectarch", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/vts-testcase/performance"
+path = "test/vts-testcase/performance"
+groups = ["vts", "projectarch", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/vts-testcase/security"
+path = "test/vts-testcase/security"
+groups = ["vts", "projectarch", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/vts-testcase/vndk"
+path = "test/vts-testcase/vndk"
+groups = ["vts", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/test/catbox"
+path = "test/catbox"
+recursive = false
+
+[[dependencies]]
+name = "toolchain/benchmark"
+path = "toolchain/benchmark"
+recursive = false
+
+[[dependencies]]
+name = "toolchain/pgo-profiles"
+path = "toolchain/pgo-profiles"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/aadevtools"
+path = "tools/aadevtools"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/acloud"
+path = "tools/acloud"
+groups = ["tools", "vts", "projectarch", "pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/apifinder"
+path = "tools/apifinder"
+groups = ["pdk", "tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/apksig"
+path = "tools/apksig"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/apkzlib"
+path = "tools/apkzlib"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/asuite"
+path = "tools/asuite"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/carrier_settings"
+path = "tools/carrier_settings"
+groups = ["tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/content_addressed_storage/prebuilts"
+path = "tools/content_addressed_storage/prebuilts"
+groups = ["tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/currysrc"
+path = "tools/currysrc"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/deviceinfra/prebuilts"
+path = "tools/deviceinfra/prebuilts"
+groups = ["tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/dexter"
+path = "tools/dexter"
+groups = ["tools", "pdk-fs"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/doc_generation"
+path = "tools/doc_generation"
+groups = ["tools", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/external_updater"
+path = "tools/external_updater"
+groups = ["tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/external/fat32lib"
+path = "tools/external/fat32lib"
+groups = ["tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/lint_checks"
+path = "tools/lint_checks"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/loganalysis"
+path = "tools/loganalysis"
+groups = ["nopresubmit", "pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/metalava"
+path = "tools/metalava"
+groups = ["pdk", "tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/netsim"
+path = "tools/netsim"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "tools/platform-compat"
+path = "tools/platform-compat"
+groups = ["pdk-cw-fs", "pdk-fs", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/ndkports"
+path = "tools/ndkports"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/repohooks"
+path = "tools/repohooks"
+groups = ["adt-infra", "cts", "developers", "motodev", "pdk", "tools", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/rr_prebuilt"
+path = "tools/rr_prebuilt"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/security"
+path = "tools/security"
+groups = ["pdk", "tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/test/connectivity"
+path = "tools/test/connectivity"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/test/graphicsbenchmark"
+path = "tools/test/graphicsbenchmark"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/test/mobly_extensions"
+path = "tools/test/mobly_extensions"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/test/mobly_snippets"
+path = "tools/test/mobly_snippets"
+groups = ["pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/test/openhst"
+path = "tools/test/openhst"
+groups = ["tools"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/tradefederation"
+path = "tools/tradefederation/core"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/tradefederation/contrib"
+path = "tools/tradefederation/contrib"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/tradefederation/prebuilts"
+path = "tools/tradefederation/prebuilts"
+groups = ["pdk", "tradefed"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/treble"
+path = "tools/treble"
+groups = ["tools", "pdk"]
+recursive = false
+
+[[dependencies]]
+name = "platform/tools/trebuchet"
+path = "tools/trebuchet"
+groups = ["tools", "cts", "pdk", "pdk-cw-fs", "pdk-fs"]
+recursive = false
+
+
+# [[linkfiles]]
+# src = "file-in-main-clone.txt"
+# dest = "link-in-workspace.txt"
+
+
+# [[copyfiles]]
+# src = "file-in-main-clone.txt"
+# dest = "file-in-workspace.txt"

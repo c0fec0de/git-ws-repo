@@ -15,7 +15,6 @@
 # with Git Workspace. If not, see <https://www.gnu.org/licenses/>.
 
 """Git Workspace Manifest Testing."""
-
 from pathlib import Path
 
 from gitws import (
@@ -27,6 +26,7 @@ from gitws import (
     ManifestSpec,
     ProjectSpec,
     Remote,
+    save,
 )
 from gitws._manifestformatmanager import get_manifest_format_manager
 from pytest import raises
@@ -90,8 +90,8 @@ def test_example(tmp_path, caplog):
         manifest_spec = manifest_format.load(filepath)
         assert manifest_spec.version == "1.0"
         assert manifest_spec.group_filters == ("-notdefault",)
-        assert manifest_spec.linkfiles == tuple()
-        assert manifest_spec.copyfiles == tuple()
+        assert manifest_spec.linkfiles == ()
+        assert manifest_spec.copyfiles == ()
         assert manifest_spec.remotes == (
             Remote(name="origin", url_base="mygitrepo"),
             Remote(name="faraway", url_base="otherrepo"),
@@ -126,3 +126,19 @@ def test_incomplete():
 
     with raises(ManifestError):
         manifest_format.load(filepath)
+
+
+def test_repo(tmp_path, caplog):
+    """repo."""
+    with chdir(TESTDATA_PATH):
+        filepath = Path("repo.xml")
+        manifest_format = RepoManifestFormat()
+        assert manifest_format.is_compatible(filepath)
+
+        with raises(IncompatibleFormatError):
+            manifest_format.save(ManifestSpec(), filepath)
+
+        manifest_spec = manifest_format.load(filepath)
+        save(manifest_spec, tmp_path / "gitws.toml")
+
+    assert_gen(tmp_path, REFDATA_PATH / "test_repo", caplog=caplog)

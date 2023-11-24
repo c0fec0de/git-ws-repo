@@ -22,12 +22,6 @@ import shutil
 import subprocess
 from contextlib import contextmanager
 
-# pylint: disable=unused-import
-from subprocess import run  # noqa
-
-from click.testing import CliRunner
-from gitws._cli import main
-
 _RE_EMPTY_LINE = re.compile(r"[ \t]*\r")
 
 LEARN = False
@@ -86,7 +80,7 @@ def assert_gen(genpath, refpath, caplog=None, tmp_path=None):
     genpath.mkdir(parents=True, exist_ok=True)
     refpath.mkdir(parents=True, exist_ok=True)
     if caplog:
-        with open(genpath / "logging.txt", "wt", encoding="utf-8") as file:
+        with open(genpath / "logging.txt", "w", encoding="utf-8") as file:
             for item in format_logs(caplog, tmp_path=tmp_path):
                 file.write(f"{item}\n")
     if LEARN:  # pragma: no cover
@@ -95,6 +89,6 @@ def assert_gen(genpath, refpath, caplog=None, tmp_path=None):
         shutil.copytree(genpath, refpath)
     cmd = ["diff", "-r", "--exclude", "__pycache__", str(refpath), str(genpath)]
     try:
-        subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(cmd, check=True, capture_output=True)
     except subprocess.CalledProcessError as error:  # pragma: no cover
-        assert False, error.stdout.decode("utf-8")
+        raise AssertionError(error.stdout.decode("utf-8")) from None
