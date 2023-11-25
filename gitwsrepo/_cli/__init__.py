@@ -29,7 +29,7 @@ from .logging import setup_logging
 def _version_option():  # pragma: no cover
     # Add support for click 7.x.x and click 8.x.x
     if click.version_option.__kwdefaults__ and "package_name" in click.version_option.__kwdefaults__:
-        return click.version_option(package_name="git-ws")
+        return click.version_option(package_name="git-ws-repo")
     return click.version_option()
 
 
