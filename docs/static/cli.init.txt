@@ -1,0 +1,6 @@
+Usage: repo init [OPTIONS]
+
+  Init.
+
+Options:
+  -h, --help  Show this message and exit.

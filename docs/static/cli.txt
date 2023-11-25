@@ -1,0 +1,12 @@
+Usage: repo [OPTIONS] COMMAND [ARGS]...
+
+  Google's git-repo replacement powered by git-ws.
+
+Options:
+  -v, --verbose
+  --version      Show the version and exit.
+  -h, --help     Show this message and exit.
+
+Commands:
+  init  Init.
+  sync  Sync.

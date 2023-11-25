@@ -29,3 +29,48 @@
 # Google's git-repo replacement powered by git-ws-repo
 
 TODO
+
+
+## 📦 Installation
+
+Git Workspace Repo is written in Python.
+
+### Recommended
+
+Please install python and then try:
+
+```bash
+curl -L https://github.com/pypa/pipx/releases/latest/download/pipx.pyz -o pipx.pyz && python3 pipx.pyz install git-ws-repo
+```
+
+Maybe you need run:
+
+```bash
+python3 pipx.pyz ensurepath
+```
+
+### via `pipx`
+
+If you already installed `pipx` (https://pypa.github.io/pipx/installation/) just run:
+
+```bash
+pipx install git-ws-repo
+```
+
+Maybe you need run:
+
+```bash
+pipx ensurepath
+```
+
+### via `pip`
+
+```bash
+pip install git-ws-repo
+```
+
+For testing you can try:
+
+```bash
+repo --version
+```

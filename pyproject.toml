@@ -25,6 +25,8 @@ packages = [
 [tool.poetry.plugins.'gitws.manifestformat']
 RepoManifestFormat = 'gitwsrepo.repomanifestformat:RepoManifestFormat'
 
+[tool.poetry.scripts]
+repo = 'gitwsrepo._cli:main'
 
 [tool.poetry.dependencies]
 python = '^3.8.2'
@@ -182,4 +184,6 @@ allowlist_externals = *
 commands =
     poetry install --without=test --without=doc
     poetry run python -c 'import gitwsrepo'
+    poetry run repo --version
+    poetry run python -m gitwsrepo --version
 """
