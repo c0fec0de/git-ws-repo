@@ -8,8 +8,11 @@
     <a href="https://github.com/c0fec0de/git-ws-repo/actions/workflows/main.yml" target="_blank">
         <img src="https://github.com/c0fec0de/git-ws-repo/actions/workflows/main.yml/badge.svg" alt="Python Build">
     </a>
+    <a href="https://coveralls.io/github/c0fec0de/git-ws-repo?branch=main" target="_blank">
+        <img src="https://coveralls.io/repos/github/c0fec0de/git-ws-repo/badge.svg?branch=main" alt="Coverage Status">
+    </a>
     <a href="https://git-ws-repo.readthedocs.io/en/stable" target="_blank">
-        <img src="https://readthedocs.org/projects/git-ws-repo/badge/?version=stable" alt="Coverage Status">
+        <img src="https://readthedocs.org/projects/git-ws-repo/badge/?version=stable" alt="Documentation Build">
     </a>
     <a href="https://pypi.python.org/pypi/git-ws-repo" target="_blank">
         <img src="https://img.shields.io/pypi/pyversions/git-ws-repo.svg" alt="python-versions">
@@ -29,3 +32,48 @@
 # Google's git-repo replacement powered by git-ws-repo
 
 TODO
+
+
+## 📦 Installation
+
+Git Workspace Repo is written in Python.
+
+### Recommended
+
+Please install python and then try:
+
+```bash
+curl -L https://github.com/pypa/pipx/releases/latest/download/pipx.pyz -o pipx.pyz && python3 pipx.pyz install git-ws-repo
+```
+
+Maybe you need run:
+
+```bash
+python3 pipx.pyz ensurepath
+```
+
+### via `pipx`
+
+If you already installed `pipx` (https://pypa.github.io/pipx/installation/) just run:
+
+```bash
+pipx install git-ws-repo
+```
+
+Maybe you need run:
+
+```bash
+pipx ensurepath
+```
+
+### via `pip`
+
+```bash
+pip install git-ws-repo
+```
+
+For testing you can try:
+
+```bash
+repo --version
+```

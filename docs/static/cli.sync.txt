@@ -1,0 +1,6 @@
+Usage: repo sync [OPTIONS]
+
+  Sync.
+
+Options:
+  -h, --help  Show this message and exit.
