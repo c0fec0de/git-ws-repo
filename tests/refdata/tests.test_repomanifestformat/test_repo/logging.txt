@@ -1,0 +1,7 @@
+INFO     git-ws  'repo.xml': Ignoring 'remote.review'
+INFO     git-ws  'repo.xml': Ignoring 'default.sync-j'
+INFO     git-ws  'repo.xml': Ignoring 'manifest-server'
+INFO     git-ws  'repo.xml': Ignoring 'superproject'
+INFO     git-ws  'repo.xml': Ignoring 'contactinfo'
+INFO     git-ws  'repo.xml': Ignoring 'default.clone-depth'
+INFO     git-ws  'repo.xml': Ignoring 'repo-hooks'

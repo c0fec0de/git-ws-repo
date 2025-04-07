@@ -1,4 +1,4 @@
-# Copyright 2022-2023 c0fec0de
+# Copyright 2023-2025 c0fec0de
 #
 # This file is part of Git Workspace.
 #
@@ -13,4 +13,5 @@
 #
 # You should have received a copy of the GNU Lesser General Public License along
 # with Git Workspace. If not, see <https://www.gnu.org/licenses/>.
+
 """Tests."""

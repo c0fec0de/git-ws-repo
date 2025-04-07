@@ -1,8 +1,6 @@
 
-Welcome to TODO documentation!
-=========================================
-
-TODO
+Welcome to git-ws-repo documentation!
+=====================================
 
 Links
 -----
@@ -14,8 +12,6 @@ Links
 
 git-repo Compatibility
 ----------------------
-
-TODO: add some comments here
 
 .. list-table:: Element Overview
     :widths: 25 75

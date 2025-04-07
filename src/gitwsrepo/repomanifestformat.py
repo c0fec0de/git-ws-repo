@@ -1,4 +1,4 @@
-# Copyright 2022-2023 c0fec0de
+# Copyright 2022-2025 c0fec0de
 #
 # This file is part of Git Workspace.
 #
@@ -17,10 +17,11 @@
 """
 Google Git Repo Manifest Format.
 """
+
 import re
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Dict, List
+from typing import Any
 from xml.etree.ElementTree import tostring
 
 from defusedxml import ElementTree
@@ -58,21 +59,21 @@ class RepoManifestFormat(ManifestFormat):
             ManifestNotFoundError: if file is not found
             ManifestError: On Syntax Or Data Scheme Errors.
         """
-        defaults: Dict[str, str] = {}
-        remotes: List[Remote] = []
-        projects: List[ProjectSpec] = []
-        ignored: List[str] = []
+        defaults: dict[str, str] = {}
+        remotes: list[Remote] = []
+        projects: list[ProjectSpec] = []
+        ignored: list[str] = []
 
         # Feel free to re-factor
 
-        def _convert_default(defaults: Dict[str, str], element):
+        def _convert_default(defaults: dict[str, str], element):
             for name, value in element.attrib.items():
                 if name in ("remote", "revision"):
                     defaults[name] = value
                 else:
                     _ignore(f"default.{name}")
 
-        def _convert_remote(remotes: List[Remote], element):
+        def _convert_remote(remotes: list[Remote], element):
             remote = {}
             for name, value in element.attrib.items():
                 if name == "name":
@@ -84,14 +85,14 @@ class RepoManifestFormat(ManifestFormat):
             with _handle_validation_error(path, element):
                 remotes.append(Remote(**remote))
 
-        def _convert_project(projects: List[ProjectSpec], element, pname=None, ppath=None):
-            copyfiles: List[FileRef] = []
-            linkfiles: List[FileRef] = []
-            groups: List[Group] = []
-            project = {
+        def _convert_project(projects: list[ProjectSpec], element, pname=None, ppath=None):
+            copyfiles: list[FileRef] = []
+            linkfiles: list[FileRef] = []
+            groups: list[Group] = []
+            project: dict[str, Any] = {
                 "recursive": False,
             }
-            subprojects: List[ProjectSpec] = []
+            subprojects: list[ProjectSpec] = []
             for name, value in element.attrib.items():
                 if name == "name":
                     project[name] = f"{pname}{value}" if pname else value
@@ -122,7 +123,7 @@ class RepoManifestFormat(ManifestFormat):
                 )
             projects.extend(subprojects)
 
-        def _convert_file(files: List[FileRef], prefix: str, element):
+        def _convert_file(files: list[FileRef], prefix: str, element):
             file = {}
             for name, value in element.attrib.items():
                 if name in ("src", "dest"):

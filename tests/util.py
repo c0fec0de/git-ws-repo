@@ -1,4 +1,4 @@
-# Copyright 2022-2023 c0fec0de
+# Copyright 2022-2025 c0fec0de
 #
 # This file is part of Git Workspace.
 #
@@ -15,27 +15,11 @@
 # with Git Workspace. If not, see <https://www.gnu.org/licenses/>.
 
 """Test Utilities."""
-import logging
+
 import os
 import re
-import shutil
-import subprocess
-from contextlib import contextmanager
 
 _RE_EMPTY_LINE = re.compile(r"[ \t]*\r")
-
-LEARN = False
-
-
-@contextmanager
-def chdir(path):
-    """Change Working Directory to ``path``."""
-    curdir = os.getcwd()
-    try:
-        os.chdir(path)
-        yield
-    finally:
-        os.chdir(curdir)
 
 
 def format_output(result, tmp_path=None):
@@ -73,22 +57,3 @@ def replace_path(text, path, repl):
         return f"{repl}{sub}"
 
     return regex.sub(func, text)
-
-
-def assert_gen(genpath, refpath, caplog=None, tmp_path=None):
-    """Compare Generated Files Versus Reference."""
-    genpath.mkdir(parents=True, exist_ok=True)
-    refpath.mkdir(parents=True, exist_ok=True)
-    if caplog:
-        with open(genpath / "logging.txt", "w", encoding="utf-8") as file:
-            for item in format_logs(caplog, tmp_path=tmp_path):
-                file.write(f"{item}\n")
-    if LEARN:  # pragma: no cover
-        logging.getLogger(__name__).warning("LEARNING %s", refpath)
-        shutil.rmtree(refpath, ignore_errors=True)
-        shutil.copytree(genpath, refpath)
-    cmd = ["diff", "-r", "--exclude", "__pycache__", str(refpath), str(genpath)]
-    try:
-        subprocess.run(cmd, check=True, capture_output=True)
-    except subprocess.CalledProcessError as error:  # pragma: no cover
-        raise AssertionError(error.stdout.decode("utf-8")) from None
