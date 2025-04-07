@@ -1,20 +1,26 @@
-[tool.poetry]
+[project]
 name = "git-ws-repo"
-version = "0.2.0"
+dynamic = ["version"]
 description = "Google's git-repo replacement powered by git-ws"
-readme = "README.md"
-license = "LGPL-3.0-or-later"
 authors = [
-    "c0fec0de <c0fec0de@gmail.com>",
-    "Martin Höher <martin@rpdev.net>",
+    {name = "c0fec0de", email = "c0fec0de@gmail.com"},
 ]
+dependencies = [
+    "defusedxml>=0.7.1",
+    "git-ws>=2.0.3",
+]
+requires-python = ">=3.9.2,<4.0"
+readme = "README.md"
+license = {text = "LGPL-3.0-or-later"}
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
-]
-
-packages = [
-    { include = "gitwsrepo" },
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
 ]
 
 [project.urls]
@@ -22,38 +28,44 @@ packages = [
 "Documentation" = "https://git-ws-repo.readthedocs.io/en/stable/"
 "Bug Tracker" = "https://github.com/c0fec0de/git-ws-repo/issues"
 
-[tool.poetry.plugins.'gitws.manifestformat']
+[project.scripts]
+repo = "gitwsrepo._cli:main"
+
+[project.entry-points."gitws.manifestformat"]
 RepoManifestFormat = 'gitwsrepo.repomanifestformat:RepoManifestFormat'
 
-[tool.poetry.scripts]
-repo = 'gitwsrepo._cli:main'
-
-[tool.poetry.dependencies]
-python = '^3.8.2'
-defusedxml = "^0.7.1"
-git-ws = "^2.0.0"
-
-[tool.poetry.group.test.dependencies]
-coveralls = "^3.3.1"
-mypy = "~1.0.0"
-pre-commit = "^3.5.0"
-pytest = '^7.0'
-pytest-cov = "^4.1.0"
-pytest-xdist = "^3.5.0"
-ruff = "^0.1.6"
-
-[tool.poetry.group.doc.dependencies]
-sphinx = '^5.1.1'
-sphinx-rtd-theme = "^1.0.0"
-sphinxemoji = ">=0.2.0"
+[dependency-groups]
+dev = [
+    "contextlib-chdir>=1.0.2",
+    "coveralls>=3.3.1",
+    "mypy>=1.9.0",
+    "pre-commit>=4.2.0",
+    "pytest-cov>=5.0.0",
+    "pytest-xdist>=3.6.1",
+    "ruff>=0.11.2",
+    "sphinx-rtd-theme>=2.0.0",
+    "sphinx>=5.3.0",
+    "sphinxemoji>=0.3.1",
+    "test2ref>=0.4.2",
+]
 
 [build-system]
-requires = ["poetry_core>=1.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+includes = ["src/gitwsrepo"]
+
+[tool.pdm.version]
+source = "scm"
+fallback_version = "0.0.0"
 
 [tool.ruff]
 line-length = 120
 fix = true
+target-version = "py39"
+
+[tool.ruff.lint]
 select = [
     # isort
     "I",
@@ -63,6 +75,8 @@ select = [
     "E", "W",
     # pydocstyle
     "D",
+    # pep8-naming
+    "N",
     # flake8-2020
     "YTT",
     # flake8-bugbear
@@ -84,9 +98,10 @@ select = [
     # implicit string concatenation
     "ISC",
     # type-checking imports
-    "TCH",
+    "TC",
     # comprehensions
     "C",
+    "C4",
     # pygrep-hooks
     "PGH",
     # Ruff-specific rules
@@ -103,45 +118,63 @@ select = [
     "G",
     # pyupgrade
     "UP",
+    # annotation
+    # "ANN"
+    # bandit
+    "S",
+    # Argument
+    # "ARG",
+    # Pathlib
+    "PTH",
+    # Simplify
+    # "SIM",
+    # Return
+    "RET",
+    # Raise
+    "RSE",
 ]
 ignore = [
     # too-many-arguments
     'PLR0913',
-    # Ambigious
-    'ISC001',
-    # support type: ignore
-    'PGH003',
-    # poetry deviates
-    'RUF200',
-    # Ambigious doc
+    # Ambiguous doc
     'D203', 'D212', 'D402', 'D406',
     # Multiline doc is ok.
     'D200',
     # We use the class for constructor doc
     'D107',
-    # We keep legacy on Optional[] and Union[]
-    'UP007',
-    # Magic method documentation is optional
+    # Magic Method Documentation is optional
     'D105',
-    # Section underline
-    'D407',
+    # We use faster isinstance checks
+    'UP038',
+    # Assert
+    'S101',
+    # Type-Checking
+    'TC001',
+    # Indent of doctest
+    'D412',
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    # Magic Values
+    "PLR2004",
+    # Argument
+    "ARG001",
 ]
 
-[tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401"]
-"gitwsrepo/_cli/**.py" = ["PLR0913"]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.pytest.ini_options]
-addopts = """
-    --cov gitwsrepo
+addopts ="""
+    --cov src/gitwsrepo
     --cov-report term
-    --cov-report html -n auto
+    --cov-report html
     --doctest-glob=docs/*.rst
     --doctest-modules
     --ignore-glob=tests/testdata*
     --ignore=docs/conf.py
-    --log-level=DEBUG
     --junitxml=report.xml
+    --log-level=INFO
 """
 filterwarnings = [
     "error",
@@ -156,34 +189,10 @@ exclude_lines = [
 ]
 
 [tool.mypy]
+disable_error_code = "misc"
 ignore_missing_imports = true
+plugins = "pydantic.mypy"
 
-[tool.tox]
-legacy_tox_ini = """
-[tox]
-envlist = py,py-min
-isolated_build = True
-
-[tox:.package]
-basepython = python3
-
-[testenv:py]
-allowlist_externals = *
-setenv =
-    LANGUAGE=en_US
-
-commands =
-    poetry install --with=test --with=doc
-    poetry run pre-commit run --all-files
-    poetry run pytest -vv
-    poetry run mypy gitwsrepo
-    poetry run make html -C docs
-
-[testenv:py-min]
-allowlist_externals = *
-commands =
-    poetry install --without=test --without=doc
-    poetry run python -c 'import gitwsrepo'
-    poetry run repo --version
-    poetry run python -m gitwsrepo --version
-"""
+[[tool.mypy.overrides]]
+module = "tests.*"
+allow_untyped_defs = true

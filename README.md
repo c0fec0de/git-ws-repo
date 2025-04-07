@@ -34,8 +34,6 @@
 
 # Google's git-repo replacement powered by git-ws-repo
 
-TODO
-
 
 ## 📦 Installation
 

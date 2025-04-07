@@ -1,0 +1,6 @@
+INFO     git-ws  'example.xml': Ignoring 'remote.review'
+INFO     git-ws  'example.xml': Ignoring 'default.upstream'
+INFO     git-ws  'example.xml': Ignoring 'default.sync-c'
+INFO     git-ws  'example.xml': Ignoring 'project.linkfile.extra'
+INFO     git-ws  'example.xml': Ignoring 'project.garbage'
+INFO     git-ws  'example.xml': Ignoring 'extend-project'

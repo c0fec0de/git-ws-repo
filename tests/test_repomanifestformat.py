@@ -1,4 +1,4 @@
-# Copyright 2022-2023 c0fec0de
+# Copyright 2022-2025 c0fec0de
 #
 # This file is part of Git Workspace.
 #
@@ -15,8 +15,10 @@
 # with Git Workspace. If not, see <https://www.gnu.org/licenses/>.
 
 """Git Workspace Manifest Testing."""
+
 from pathlib import Path
 
+from contextlib_chdir import chdir
 from gitws import (
     Defaults,
     FileRef,
@@ -30,11 +32,11 @@ from gitws import (
 )
 from gitws._manifestformatmanager import get_manifest_format_manager
 from pytest import raises
+from test2ref import assert_refdata
 
 from gitwsrepo import RepoManifestFormat
 
 from .common import TESTDATA_PATH, get_refdata_path
-from .util import assert_gen, chdir
 
 REFDATA_PATH = get_refdata_path(__file__)
 
@@ -115,7 +117,7 @@ def test_example(tmp_path, caplog):
         with raises(IncompatibleFormatError):
             manifest_format.save(ManifestSpec(), filepath)
 
-    assert_gen(tmp_path, REFDATA_PATH / "test_default", caplog=caplog)
+    assert_refdata(test_example, tmp_path, caplog=caplog)
 
 
 def test_incomplete():
@@ -129,7 +131,7 @@ def test_incomplete():
 
 
 def test_repo(tmp_path, caplog):
-    """repo."""
+    """Repo."""
     with chdir(TESTDATA_PATH):
         filepath = Path("repo.xml")
         manifest_format = RepoManifestFormat()
@@ -141,4 +143,4 @@ def test_repo(tmp_path, caplog):
         manifest_spec = manifest_format.load(filepath)
         save(manifest_spec, tmp_path / "gitws.toml")
 
-    assert_gen(tmp_path, REFDATA_PATH / "test_repo", caplog=caplog)
+    assert_refdata(test_repo, tmp_path, caplog=caplog)

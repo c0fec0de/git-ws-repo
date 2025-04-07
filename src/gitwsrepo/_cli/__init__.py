@@ -1,4 +1,4 @@
-# Copyright 2022-2023 c0fec0de
+# Copyright 2022-2025 c0fec0de
 #
 # This file is part of Git Workspace.
 #
@@ -17,12 +17,9 @@
 """Command Line Interface."""
 
 import click
-from gitws import AppConfig, AppConfigLocation, Defaults, GitWS, filter_clone_on_branch
+from gitws import AppConfig
 
-# from gitws._manifestformatmanager import get_manifest_format_manager
-# from gitws._util import resolve_relative
-# from gitws.git import FileStatus, State
-from .common import COLOR_INFO, Context, Error, exceptionhandling, pass_context
+from .common import Context, Error, exceptionhandling, pass_context
 from .logging import setup_logging
 
 
@@ -56,7 +53,7 @@ def init(
     Init.
     """
     with exceptionhandling(context):
-        click.secho("Init")
+        click.secho("Init-TODO")
 
 
 @main.command()
@@ -68,4 +65,4 @@ def sync(
     Sync.
     """
     with exceptionhandling(context):
-        click.secho("Sync")
+        click.secho("Sync-TODO")

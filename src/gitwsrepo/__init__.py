@@ -1,4 +1,4 @@
-# Copyright 2022-2023 c0fec0de
+# Copyright 2022-2025 c0fec0de
 #
 # This file is part of Git Workspace.
 #
@@ -19,3 +19,5 @@ Google's git-repo replacement powered by git-ws.
 """
 
 from .repomanifestformat import RepoManifestFormat
+
+__all__ = ["RepoManifestFormat"]

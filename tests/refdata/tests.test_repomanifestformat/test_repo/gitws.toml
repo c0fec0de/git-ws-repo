@@ -5034,8 +5034,8 @@ groups = ["pdk"]
 recursive = false
 
 [[dependencies]]
-name = "platform/external/testng"
-path = "external/testng"
+name = "platform/external/testing"
+path = "external/testing"
 groups = ["pdk"]
 recursive = false
 

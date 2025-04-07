@@ -1,0 +1,13 @@
+{
+    "cookiecutter": {
+    "_checkout": null,
+    "_output_dir": "/Users/c0fec0de/projects",
+    "_repo_dir": "/Users/c0fec0de/.cookiecutters/python-template",
+    "_template": "gh:nbiotcloud/python-template",
+    "name": "git-ws-repo",
+    "snake_name": "gitwsrepo",
+    "title": "Google's git-repo replacement powered by git-ws",
+    "user": "c0fec0de",
+    "year": "2023"
+}
+}
